@@ -7,10 +7,20 @@
 
 import SwiftUI
 
+public
 struct Padding: ViewModifier {
-    var edges: Edge.Set = .all
-    var length: CGFloat? = nil
-    var repetitions = 0
+    var edges: Edge.Set
+    var length: CGFloat?
+    var repetitions: Int
+    public
+    init(edges: Edge.Set = .all,
+         length: CGFloat? = nil,
+         repetitions: Int = 0) {
+        self.edges = edges
+        self.length = length
+        self.repetitions = repetitions
+    }
+    public
     func body(content: Content) -> some View {
         if repetitions <= 0 {
             content
@@ -24,6 +34,7 @@ struct Padding: ViewModifier {
     }
 }
 
+public
 extension View {
     func padding(_ edges: Edge.Set = .all,
                  _ length: CGFloat? = nil,
@@ -42,7 +53,9 @@ extension View {
     }
 }
 
+public
 struct Padding_Ext: View {
+    public
     var body: some View {
         VStack {
             Divider()
