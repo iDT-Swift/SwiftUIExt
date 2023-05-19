@@ -16,7 +16,7 @@ struct TabView<SelectionValue, Content> : View where SelectionValue : Hashable, 
 public
 struct TabButtonsContainerView<Content>: View where Content : View {
     @State var selection: String? = nil
-    let content: Content
+    private let content: Content
     private let onAppaerSelection: String?
     @State private var tabs: [String] = .init()
     
