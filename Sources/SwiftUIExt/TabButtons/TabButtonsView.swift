@@ -7,11 +7,19 @@
 
 import SwiftUI
 
+public
 struct TabButtonsView: View {
     let titles: [String]
     @Binding var selection: String?
-    var background: Color = .clear
-    var body: some View {
+    var background: Color
+    public init(titles: [String],
+                selection: Binding<String?> = .constant(nil),
+                background: Color = .clear) {
+        self.titles = titles
+        self._selection = selection
+        self.background = background
+    }
+    public var body: some View {
         HStack {
             ForEach(titles, id: \.self) { title in
                 TabScrollItemView(title: title, active: title == selection)

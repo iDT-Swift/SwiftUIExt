@@ -6,16 +6,35 @@
 //
 
 import SwiftUI
+import SwiftUIExt
 
 struct ContentView: View {
     var body: some View {
         VStack {
+            Spacer()
             Image(systemName: "globe")
                 .imageScale(.large)
                 .foregroundColor(.accentColor)
-            Text("Hello, world!")
+                .padding()
+            Text("Lato-Regular: ")
+            Text("1234567890")
+                .font(.custom("Lato-Regular",
+                              size: .title1))
+                .padding()
+            Text("Lato-Regular")
+            Text("1234567890")
+                .font(.custom("PlayfairDisplay-Regular",
+                              size: .title1))
+                .padding()
+            Spacer()
         }
-        .padding()
+        .frame(maxWidth: .infinity)
+        .ignoresSafeArea()
+        .background {
+            Image.SSOBackground
+                .resizable()
+                .ignoresSafeArea()
+        }
     }
 }
 

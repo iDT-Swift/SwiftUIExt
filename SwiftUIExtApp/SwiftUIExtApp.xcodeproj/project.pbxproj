@@ -15,6 +15,7 @@
 		C9D634962A173CF600F6C1CC /* SwiftUIExtAppUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9D634952A173CF600F6C1CC /* SwiftUIExtAppUITests.swift */; };
 		C9D634982A173CF600F6C1CC /* SwiftUIExtAppUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9D634972A173CF600F6C1CC /* SwiftUIExtAppUITestsLaunchTests.swift */; };
 		C9D634AA2A1753FB00F6C1CC /* SwiftUIExt in Frameworks */ = {isa = PBXBuildFile; productRef = C9D634A92A1753FB00F6C1CC /* SwiftUIExt */; };
+		C9D634B02A1755D100F6C1CC /* SSOBackroundPreviews.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9D634AF2A1755D100F6C1CC /* SSOBackroundPreviews.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -46,6 +47,7 @@
 		C9D634952A173CF600F6C1CC /* SwiftUIExtAppUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwiftUIExtAppUITests.swift; sourceTree = "<group>"; };
 		C9D634972A173CF600F6C1CC /* SwiftUIExtAppUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwiftUIExtAppUITestsLaunchTests.swift; sourceTree = "<group>"; };
 		C9D634A52A173D1400F6C1CC /* SwiftUIExt */ = {isa = PBXFileReference; lastKnownFileType = wrapper; name = SwiftUIExt; path = ..; sourceTree = "<group>"; };
+		C9D634AF2A1755D100F6C1CC /* SSOBackroundPreviews.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SSOBackroundPreviews.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -99,6 +101,7 @@
 		C9D634792A173CF500F6C1CC /* SwiftUIExtApp */ = {
 			isa = PBXGroup;
 			children = (
+				C9D634AE2A1755C000F6C1CC /* Previews */,
 				C9D6347A2A173CF500F6C1CC /* SwiftUIExtAppApp.swift */,
 				C9D6347C2A173CF500F6C1CC /* ContentView.swift */,
 				C9D6347E2A173CF600F6C1CC /* Assets.xcassets */,
@@ -145,6 +148,14 @@
 			children = (
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		C9D634AE2A1755C000F6C1CC /* Previews */ = {
+			isa = PBXGroup;
+			children = (
+				C9D634AF2A1755D100F6C1CC /* SSOBackroundPreviews.swift */,
+			);
+			path = Previews;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -281,6 +292,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				C9D6347D2A173CF500F6C1CC /* ContentView.swift in Sources */,
+				C9D634B02A1755D100F6C1CC /* SSOBackroundPreviews.swift in Sources */,
 				C9D6347B2A173CF500F6C1CC /* SwiftUIExtAppApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -448,6 +460,7 @@
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -477,6 +490,7 @@
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",

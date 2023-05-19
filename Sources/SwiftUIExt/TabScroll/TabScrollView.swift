@@ -7,10 +7,19 @@
 
 import SwiftUI
 
+public
 struct TabScrollView: View {
     let titles: [String]
     @Binding var selection: String?
-    var background: Color = .clear
+    var background: Color
+    public init(titles: [String],
+                selection: Binding<String?> = .constant(nil),
+                background: Color = .clear) {
+        self.titles = titles
+        self._selection = selection
+        self.background = background
+    }
+    public
     var body: some View {
         ScrollView(.horizontal, showsIndicators: false) {
             HStack { ForEach(titles, id: \.self) { title in

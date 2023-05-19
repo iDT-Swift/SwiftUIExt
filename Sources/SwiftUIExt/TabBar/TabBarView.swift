@@ -7,13 +7,24 @@
 
 import SwiftUI
 
+public
 struct TabBarView: View {
     let tabs: [TabBarItem]
     @Binding var selection: TabBarItem?
     @State var localSelection: TabBarItem?
-    var background: Color = .white
+    var background: Color
     @Namespace private var namespace
-    var body: some View {
+    public init(tabs: [TabBarItem],
+                selection: Binding<TabBarItem?> = .constant(nil),
+                localSelection: TabBarItem? = nil,
+                background: Color = .white) {
+        self.tabs = tabs
+        self._selection = selection
+        self.localSelection = localSelection
+        self.background = background
+//        self.namespace = namespace
+    }
+    public var body: some View {
         HStack {
             ForEach(tabs, id: \.self) { tab in
                 tabView(tab: tab)

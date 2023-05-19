@@ -7,6 +7,7 @@
 
 import SwiftUI
 
+public
 struct AlertModifier<S, A, M>: ViewModifier
 where  S : StringProtocol, A : View, M : View
 {
@@ -16,7 +17,16 @@ where  S : StringProtocol, A : View, M : View
     @ViewBuilder let actions: () -> A
     let message: () -> M
     
-    func body(content: Content) -> some View {
+    public init(title: S,
+                isPresented: Binding<Bool>,
+                actions: @escaping () -> A,
+                message: @escaping () -> M) {
+        self.title = title
+        self._isPresented = isPresented
+        self.actions = actions
+        self.message = message
+    }
+    public func body(content: Content) -> some View {
         content
             .blur(radius: radius)
             .alert(title,

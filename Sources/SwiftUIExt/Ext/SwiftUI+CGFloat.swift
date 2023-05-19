@@ -7,6 +7,7 @@
 
 import SwiftUI
 
+public
 extension UIFont.TextStyle {
     var pointSize: CGFloat { UIFont.preferredFont(forTextStyle: self).pointSize }
     var font: Font {
@@ -27,18 +28,19 @@ extension UIFont.TextStyle {
     }
 }
 
+public
 extension CGFloat {
-    public static var largeTitle: CGFloat { UIFont.TextStyle.largeTitle.pointSize }
-    public static var title1: CGFloat { UIFont.TextStyle.title1.pointSize }
-    public static var title2: CGFloat { UIFont.TextStyle.title2.pointSize }
-    public static var title3: CGFloat { UIFont.TextStyle.title3.pointSize }
-    public static var headline: CGFloat { UIFont.TextStyle.headline.pointSize }
-    public static var subheadline: CGFloat { UIFont.TextStyle.subheadline.pointSize }
-    public static var body: CGFloat { UIFont.TextStyle.body.pointSize }
-    public static var callout: CGFloat { UIFont.TextStyle.callout.pointSize }
-    public static var footnote: CGFloat { UIFont.TextStyle.footnote.pointSize }
-    public static var caption1: CGFloat { UIFont.TextStyle.caption1.pointSize }
-    public static var caption2: CGFloat { UIFont.TextStyle.caption2.pointSize }
+    static var largeTitle: CGFloat { UIFont.TextStyle.largeTitle.pointSize }
+    static var title1: CGFloat { UIFont.TextStyle.title1.pointSize }
+    static var title2: CGFloat { UIFont.TextStyle.title2.pointSize }
+    static var title3: CGFloat { UIFont.TextStyle.title3.pointSize }
+    static var headline: CGFloat { UIFont.TextStyle.headline.pointSize }
+    static var subheadline: CGFloat { UIFont.TextStyle.subheadline.pointSize }
+    static var body: CGFloat { UIFont.TextStyle.body.pointSize }
+    static var callout: CGFloat { UIFont.TextStyle.callout.pointSize }
+    static var footnote: CGFloat { UIFont.TextStyle.footnote.pointSize }
+    static var caption1: CGFloat { UIFont.TextStyle.caption1.pointSize }
+    static var caption2: CGFloat { UIFont.TextStyle.caption2.pointSize }
 }
 
 private

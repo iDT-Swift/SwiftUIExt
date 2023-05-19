@@ -7,16 +7,24 @@
 
 import SwiftUI
 
+extension Image {
+    static public var SSOBackground:Image {
+        Image("SSOBackground", bundle: .module)
+    }
+}
+
+public
 struct SSOBackround: View {
+    public init() {}
     public
     var body: some View {
-            Image("SSOBackground")
+        Image.SSOBackground
                 .resizable()
                 .scaledToFill()
     }
 }
 
-struct SSOView_Ext_Previews: PreviewProvider {
+struct SSOBackround_Previews: PreviewProvider {
     static var previews: some View {
         ZStack {
             VStack() {

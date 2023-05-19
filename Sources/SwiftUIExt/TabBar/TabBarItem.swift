@@ -7,6 +7,7 @@
 
 import SwiftUI
 
+public
 enum TabBarItem: Hashable, CaseIterable {
     case home, favorites, profile, playroom
     

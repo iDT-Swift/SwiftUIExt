@@ -7,7 +7,10 @@
 
 import SwiftUI
 
+public
 struct SSOBackView: View {
+    public init() {}
+    public
     var body: some View {
         Image(systemName: "chevron.backward")
             .symbolRenderingMode(.monochrome)
@@ -16,8 +19,10 @@ struct SSOBackView: View {
     }
 }
 
+public
 struct BackButton: View {
     @Environment(\.presentationMode) var presentationMode
+    public init() {}
     public
     var body: some View {
         Button(action: {

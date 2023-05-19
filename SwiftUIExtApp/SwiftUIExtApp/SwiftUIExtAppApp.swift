@@ -10,9 +10,18 @@ import SwiftUIExt
 
 @main
 struct SwiftUIExtAppApp: App {
+    @State var isLoading: Bool = true
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            if isLoading {
+                Text("Is loading ...")
+                    .task {
+                        await CustomFonts.shared.registerFonts()
+                        isLoading = false
+                    }
+            } else {
+                ContentView()
+            }
         }
     }
 }
