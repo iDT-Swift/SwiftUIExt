@@ -7,6 +7,7 @@
 
 import SwiftUI
 
+public
 struct ScreenButton<T:View>: View {
     var action: @MainActor () -> Void
     var paddingLength: CGFloat? = nil
@@ -14,22 +15,22 @@ struct ScreenButton<T:View>: View {
     var foreground: Color = .black
     var background: Color = .white
     private let textStyle: UIFont.TextStyle = .body
-    var body: some View {
+    public var body: some View {
         Button(action: action, label: _label)
     }
-    init(action: @escaping () -> Void,
+    public init(action: @escaping () -> Void,
          paddingLength: CGFloat,
          label: @escaping () -> T) {
         self.action = action
         self.paddingLength = paddingLength
         self.label = label
     }
-    init(action: @escaping () -> Void,
+    public init(action: @escaping () -> Void,
          label: @escaping () -> T) {
         self.action = action
         self.label = label
     }
-    init(title: String,
+    public init(title: String,
          foreground: Color = .black,
          background: Color = .white,
           _ action: @MainActor @escaping () -> Void
@@ -51,9 +52,10 @@ struct ScreenButton<T:View>: View {
     }
 }
 
+public
 enum SignUpMethod {
     case Google, Apple, Email, Phone
-    var name: String {
+    public var name: String {
         switch self {
         case .Google: return "GOOGLE"
         case .Apple: return "APPLE"
@@ -61,7 +63,7 @@ enum SignUpMethod {
         case .Phone: return "PHONE"
         }
     }
-    var systemImage: String {
+    public var systemImage: String {
         switch self {
         case .Google: return "g.square"
         case .Apple: return "apple.logo"
@@ -71,11 +73,16 @@ enum SignUpMethod {
     }
 }
 
+public
 struct SignUpButton: View  {
     var signUpMethod: SignUpMethod
     var action: @MainActor () -> Void
     private let padding: CGFloat = UIFont.TextStyle.body.pointSize
-    var body: some View {
+    init(signUpMethod: SignUpMethod, action: @escaping () -> Void) {
+        self.signUpMethod = signUpMethod
+        self.action = action
+    }
+    public var body: some View {
         ScreenButton(action: action,
                      paddingLength: 0
         ) {
