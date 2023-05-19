@@ -13,12 +13,23 @@ struct TabView<SelectionValue, Content> : View where SelectionValue : Hashable, 
     public init(selection: Binding<SelectionValue>?, @ViewBuilder content: () -> Content)
  */
 
+public
 struct TabButtonsContainerView<Content>: View where Content : View {
-    @State var selection: String?
-    @ViewBuilder let content: Content
+    @State var selection: String? = nil
+    let content: Content
+    private let onAppaerSelection: String?
     @State private var tabs: [String] = .init()
     
-    var body: some View {
+    public init(@ViewBuilder content: () -> Content) {
+        self.content = content()
+        onAppaerSelection = nil
+    }
+    public init(selection s: String,
+                @ViewBuilder content: () -> Content) {
+        self.content = content()
+        onAppaerSelection = s
+    }
+    public var body: some View {
         VStack(spacing: 0) {
             TabButtonsView(titles: tabs, selection: $selection)
             ZStack {
@@ -28,6 +39,12 @@ struct TabButtonsContainerView<Content>: View where Content : View {
         .onPreferenceChange(TabScrollItemPreferenceKey.self) {
             tabs = $0
         }
+        .onAppear {
+            selection = onAppaerSelection
+        }
+    }
+    func updateSelection(selection s:String?) {
+        selection = s
     }
 }
 

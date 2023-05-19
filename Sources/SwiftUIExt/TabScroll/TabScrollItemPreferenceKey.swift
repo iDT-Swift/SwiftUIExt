@@ -26,6 +26,7 @@ struct TabScrollItemViewModifier: ViewModifier {
     }
 }
 
+public
 extension View {
     func tabScrollItem(tab: String) -> some View {
         modifier(TabScrollItemViewModifier(tab: tab))

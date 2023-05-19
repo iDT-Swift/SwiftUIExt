@@ -11,6 +11,14 @@ import SwiftUIExt
 struct ContentView: View {
     var body: some View {
         VStack {
+            TabButtonsContainerView(selection: "GREEN") {
+                Color.green.tabScrollItem(tab: "GREEN")
+                Color.yellow.tabScrollItem(tab: "YELLOW")
+            }
+            .padding()
+            .padding(.top)
+            .padding(.top)
+            .padding(.top)
             Spacer()
             Image(systemName: "globe")
                 .imageScale(.large)
