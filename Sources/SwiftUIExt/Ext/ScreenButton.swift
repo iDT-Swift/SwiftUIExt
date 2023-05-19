@@ -78,6 +78,7 @@ struct SignUpButton: View  {
     var signUpMethod: SignUpMethod
     var action: @MainActor () -> Void
     private let padding: CGFloat = UIFont.TextStyle.body.pointSize
+    public
     init(signUpMethod: SignUpMethod, action: @escaping () -> Void) {
         self.signUpMethod = signUpMethod
         self.action = action
