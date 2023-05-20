@@ -21,11 +21,10 @@ struct SSOBackroundPreviews: View {
             .padding()
         }
         .background {
-            Image("SSOBackground", bundle: Bundle(identifier: "SwiftUIExt"))
+            Image.SSOBackground
                 .resizable()
                 .scaledToFill()
-//            SSOBackround()
-//                .ignoresSafeArea()
+                .ignoresSafeArea()
         }
     }
 }
