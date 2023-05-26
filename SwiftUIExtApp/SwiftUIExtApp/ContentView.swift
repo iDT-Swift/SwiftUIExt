@@ -9,11 +9,22 @@ import SwiftUI
 import SwiftUIExt
 
 struct ContentView: View {
+    @State private var fileURL: URL? = Bundle
+        .main.url(forResource: "WelcomeBackground",
+                  withExtension: "mp4")
+    @ViewBuilder
+    var video: some View {
+        if let fileURL = fileURL {
+            PlayerLooperView(fileURL:fileURL)
+        } else {
+            Color.yellow
+        }
+    }
     var body: some View {
         VStack {
             TabButtonsContainerView(selection: "GREEN") {
                 Color.green.tabScrollItem(tab: "GREEN")
-                Color.yellow.tabScrollItem(tab: "YELLOW")
+                video.tabScrollItem(tab: "VIDEO")
             }
             .padding()
             .padding(.top)

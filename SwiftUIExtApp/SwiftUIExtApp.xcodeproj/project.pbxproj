@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		C90688DC2A203B5000A43773 /* WelcomeBackground.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = C90688DB2A203B5000A43773 /* WelcomeBackground.mp4 */; };
 		C9D6347B2A173CF500F6C1CC /* SwiftUIExtAppApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9D6347A2A173CF500F6C1CC /* SwiftUIExtAppApp.swift */; };
 		C9D6347D2A173CF500F6C1CC /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9D6347C2A173CF500F6C1CC /* ContentView.swift */; };
 		C9D6347F2A173CF600F6C1CC /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C9D6347E2A173CF600F6C1CC /* Assets.xcassets */; };
@@ -36,6 +37,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		C90688DB2A203B5000A43773 /* WelcomeBackground.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = WelcomeBackground.mp4; sourceTree = "<group>"; };
 		C9D634772A173CF500F6C1CC /* SwiftUIExtApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SwiftUIExtApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C9D6347A2A173CF500F6C1CC /* SwiftUIExtAppApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwiftUIExtAppApp.swift; sourceTree = "<group>"; };
 		C9D6347C2A173CF500F6C1CC /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -76,6 +78,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		C9954E9D2A20387A004F6EF9 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				C90688DB2A203B5000A43773 /* WelcomeBackground.mp4 */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
 		C9D6346E2A173CF500F6C1CC = {
 			isa = PBXGroup;
 			children = (
@@ -101,6 +111,7 @@
 		C9D634792A173CF500F6C1CC /* SwiftUIExtApp */ = {
 			isa = PBXGroup;
 			children = (
+				C9954E9D2A20387A004F6EF9 /* Resources */,
 				C9D634AE2A1755C000F6C1CC /* Previews */,
 				C9D6347A2A173CF500F6C1CC /* SwiftUIExtAppApp.swift */,
 				C9D6347C2A173CF500F6C1CC /* ContentView.swift */,
@@ -265,6 +276,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C90688DC2A203B5000A43773 /* WelcomeBackground.mp4 in Resources */,
 				C9D634822A173CF600F6C1CC /* Preview Assets.xcassets in Resources */,
 				C9D6347F2A173CF600F6C1CC /* Assets.xcassets in Resources */,
 			);
