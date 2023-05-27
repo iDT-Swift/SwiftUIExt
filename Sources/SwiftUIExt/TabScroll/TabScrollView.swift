@@ -10,10 +10,10 @@ import SwiftUI
 public
 struct TabScrollView: View {
     let titles: [String]
-    @Binding var selection: String?
+    @Binding var selection: String
     var background: Color
     public init(titles: [String],
-                selection: Binding<String?> = .constant(nil),
+                selection: Binding<String>,
                 background: Color = .clear) {
         self.titles = titles
         self._selection = selection
@@ -35,7 +35,7 @@ struct TabScrollView_Previews: PreviewProvider {
     static let titles: [String] = .init(["FIRST", "SECOND", "THIRD", "Fourth", "Fifth"])
     @MainActor
     struct Proxy: View {
-        @State var selection: String? = titles.first
+        @State var selection: String = "FIRST"
         var body: some View {
             TabScrollView(titles: titles,
                           selection: $selection

@@ -9,6 +9,7 @@ import SwiftUI
 import SwiftUIExt
 
 struct ContentView: View {
+    @State var selection: String = "GREEN"
     @State private var fileURL: URL? = Bundle
         .main.url(forResource: "WelcomeBackground",
                   withExtension: "mp4")
@@ -17,42 +18,42 @@ struct ContentView: View {
         if let fileURL = fileURL {
             PlayerLooperView(fileURL:fileURL)
         } else {
-            Color.yellow
+            Image.SSOBackground
         }
     }
     var body: some View {
         VStack {
-            TabButtonsContainerView(selection: "GREEN") {
+            TabButtonsContainerView(selection: $selection) {
                 Color.green.tabScrollItem(tab: "GREEN")
-                video.tabScrollItem(tab: "VIDEO")
+                Color.clear.border(Color.white).tabScrollItem(tab: "CLEAR")
+                Color.yellow.tabScrollItem(tab: "YELLOW")
             }
             .padding()
-            .padding(.top)
-            .padding(.top)
-            .padding(.top)
             Spacer()
-            Image(systemName: "globe")
-                .imageScale(.large)
-                .foregroundColor(.accentColor)
-                .padding()
-            Text("Lato-Regular: ")
-            Text("1234567890")
-                .font(.custom("Lato-Regular",
-                              size: .title1))
-                .padding()
-            Text("Lato-Regular")
-            Text("1234567890")
-                .font(.custom("PlayfairDisplay-Regular",
-                              size: .title1))
-                .padding()
+            if selection != "CLEAR" {
+                VStack {
+                    Image(systemName: "globe")
+                        .imageScale(.large)
+                        .foregroundColor(.accentColor)
+                        .padding()
+                    Text("Lato-Regular: ")
+                    Text("1234567890")
+                        .font(.custom("Lato-Regular",
+                                      size: .title1))
+                        .padding()
+                    Text("Lato-Regular")
+                    Text("1234567890")
+                        .font(.custom("PlayfairDisplay-Regular",
+                                      size: .title1))
+                        .padding()
+                }
+                .background(Color.gray.opacity(0.2))
+            }
             Spacer()
         }
         .frame(maxWidth: .infinity)
-        .ignoresSafeArea()
         .background {
-            Image.SSOBackground
-                .resizable()
-                .ignoresSafeArea()
+            video.ignoresSafeArea()
         }
     }
 }

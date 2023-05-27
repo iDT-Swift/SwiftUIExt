@@ -15,19 +15,15 @@ struct TabView<SelectionValue, Content> : View where SelectionValue : Hashable, 
 
 public
 struct TabButtonsContainerView<Content>: View where Content : View {
-    @State var selection: String? = nil
+    @Binding var selection: String
     private let content: Content
-    private let onAppaerSelection: String?
+    private let onAppaerSelection: String
     @State private var tabs: [String] = .init()
-    
-    public init(@ViewBuilder content: () -> Content) {
-        self.content = content()
-        onAppaerSelection = nil
-    }
-    public init(selection s: String,
+    public init(selection s: Binding<String>,
                 @ViewBuilder content: () -> Content) {
         self.content = content()
-        onAppaerSelection = s
+        onAppaerSelection = s.wrappedValue
+        _selection = s
     }
     public var body: some View {
         VStack(spacing: 0) {
@@ -43,7 +39,7 @@ struct TabButtonsContainerView<Content>: View where Content : View {
             selection = onAppaerSelection
         }
     }
-    func updateSelection(selection s:String?) {
+    func updateSelection(selection s:String) {
         selection = s
     }
 }
@@ -51,8 +47,9 @@ struct TabButtonsContainerView<Content>: View where Content : View {
 struct TabButtonsContainerView_Previews: PreviewProvider {
     @MainActor
     struct Proxy: View {
+        @State var selection: String = "GREEN"
         var body: some View {
-            TabButtonsContainerView(selection: "GREEN") {
+            TabButtonsContainerView(selection: $selection) {
                 Color.green.tabScrollItem(tab: "GREEN")
                 Color.yellow.tabScrollItem(tab: "YELLOW")
             }

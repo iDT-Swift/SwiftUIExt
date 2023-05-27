@@ -14,7 +14,7 @@ struct TabView<SelectionValue, Content> : View where SelectionValue : Hashable, 
  */
 
 struct TabScrollContainerView<Content>: View where Content : View {
-    @State var selection: String?
+    @Binding var selection: String
     @ViewBuilder let content: Content
     @State private var tabs: [String] = .init()
     
@@ -34,8 +34,9 @@ struct TabScrollContainerView<Content>: View where Content : View {
 struct TabScrollContainerView_Previews: PreviewProvider {
     @MainActor
     struct Proxy: View {
+        @State var selection:String = "RED"
         var body: some View {
-            TabScrollContainerView(selection: "RED") {
+            TabScrollContainerView(selection: $selection) {
                 Color.green.tabScrollItem(tab: "GREEN")
                 Color.yellow.tabScrollItem(tab: "YELLOW")
                 Color.red.tabScrollItem(tab: "RED")
