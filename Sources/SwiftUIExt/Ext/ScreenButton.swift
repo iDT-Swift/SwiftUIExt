@@ -54,13 +54,13 @@ struct ScreenButton<T:View>: View {
 
 public
 enum SignUpMethod {
-    case Google, Apple, Email, Phone
+    case Google, Apple, Email, FACEBOOK
     public var name: String {
         switch self {
         case .Google: return "GOOGLE"
         case .Apple: return "APPLE"
         case .Email: return "EMAIL #"
-        case .Phone: return "PHONE"
+        case .FACEBOOK: return "FACEBOOK"
         }
     }
     public var systemImage: String {
@@ -68,7 +68,7 @@ enum SignUpMethod {
         case .Google: return "g.square"
         case .Apple: return "apple.logo"
         case .Email: return "envelope"
-        case .Phone: return "iphone.gen3"
+        case .FACEBOOK: return "f.square.fill"
         }
     }
 }
@@ -90,6 +90,7 @@ struct SignUpButton: View  {
             ZStack {
                 HStack {
                     Image(systemName: signUpMethod.systemImage)
+                        .foregroundColor( signUpMethod == .FACEBOOK ? .blue : .black)
                         .font(.system(size: .title1))
                         .padding(.leading, padding)
                     Spacer()
@@ -120,7 +121,7 @@ struct ScreenButton_Previews: PreviewProvider {
                     .padding(.bottom)
                 SignUpButton(signUpMethod: .Apple) { print("Apple") }
                     .padding(.bottom)
-                SignUpButton(signUpMethod: .Phone) { print("Phone") }
+                SignUpButton(signUpMethod: .FACEBOOK) { print("FACEBOOK") }
                     .padding(.bottom)
                 SignUpButton(signUpMethod: .Email) { print("Email") }
                     .padding(.bottom)
