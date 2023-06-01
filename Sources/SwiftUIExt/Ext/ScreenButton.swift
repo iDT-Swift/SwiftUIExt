@@ -52,81 +52,18 @@ struct ScreenButton<T:View>: View {
     }
 }
 
-public
-enum SignUpMethod {
-    case Google, Apple, Email, FACEBOOK
-    public var name: String {
-        switch self {
-        case .Google: return "GOOGLE"
-        case .Apple: return "APPLE"
-        case .Email: return "EMAIL #"
-        case .FACEBOOK: return "FACEBOOK"
-        }
-    }
-    public var systemImage: String {
-        switch self {
-        case .Google: return "g.square"
-        case .Apple: return "apple.logo"
-        case .Email: return "envelope"
-        case .FACEBOOK: return "f.square.fill"
-        }
-    }
-}
-
-public
-struct SignUpButton: View  {
-    var signUpMethod: SignUpMethod
-    var action: @MainActor () -> Void
-    private let padding: CGFloat = UIFont.TextStyle.body.pointSize
-    public
-    init(signUpMethod: SignUpMethod, action: @escaping () -> Void) {
-        self.signUpMethod = signUpMethod
-        self.action = action
-    }
-    public var body: some View {
-        ScreenButton(action: action,
-                     paddingLength: 0
-        ) {
-            ZStack {
-                HStack {
-                    Image(systemName: signUpMethod.systemImage)
-                        .foregroundColor( signUpMethod == .FACEBOOK ? .blue : .black)
-                        .font(.system(size: .title1))
-                        .padding(.leading, padding)
-                    Spacer()
-                }
-                Text(signUpMethod.name)
-                    .padding(.vertical, padding)
-            }
-        }
-    }
-}
-
 struct ScreenButton_Previews: PreviewProvider {
     static var previews: some View {
         ZStack {
             Color.black.ignoresSafeArea()
-            VStack {
+            VStack(spacing: .title1) {
                 ScreenButton(action: { print("Hello") }) { Text("Action/Label") }
-                    .padding(.bottom)
                 ScreenButton(title: "Hello") { print("Title/Action") }
-                    .padding(.bottom)
                 ScreenButton(title: "Hello",
                              foreground: .yellow,
                              background: .green) { print("Title/Yellos/Gree/Action") }
-                    .padding(.bottom)
                 ScreenButton(title: "Hello") { print("Title/Action") }
-                    .padding(.bottom)
-                SignUpButton(signUpMethod: .Google) { print("Google") }
-                    .padding(.bottom)
-                SignUpButton(signUpMethod: .Apple) { print("Apple") }
-                    .padding(.bottom)
-                SignUpButton(signUpMethod: .FACEBOOK) { print("FACEBOOK") }
-                    .padding(.bottom)
-                SignUpButton(signUpMethod: .Email) { print("Email") }
-                    .padding(.bottom)
             }
         }
-
     }
 }
