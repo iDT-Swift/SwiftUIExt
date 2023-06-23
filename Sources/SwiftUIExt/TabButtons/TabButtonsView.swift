@@ -31,7 +31,6 @@ struct TabButtonsView: View {
                 TabScrollItemView(title: title, active: title == selection)
                     .onTapGesture { selection = title }
             }
-            Spacer()
         }
         .background(background)
     }

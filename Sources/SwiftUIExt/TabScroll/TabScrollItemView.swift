@@ -20,7 +20,7 @@ struct TabScrollItemView: View {
             .font(textStyle.font)
             .fontWeight(.semibold)
             .foregroundColor(foreground)
-            .padding(.vertical, textStyle.pointSize * 0.5)
+            .padding(.vertical, textStyle.pointSize * 0.75)
             .padding(.horizontal, textStyle.pointSize * 2)
             .background(background, in: Capsule())
     }
