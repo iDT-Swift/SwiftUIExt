@@ -8,7 +8,7 @@
 import SwiftUI
 
 public
-struct SSOBackView: View {
+struct BackView: View {
     public init() {}
     public
     var body: some View {
@@ -28,7 +28,7 @@ struct BackButton: View {
         Button(action: {
             presentationMode.wrappedValue.dismiss()
         }) {
-            SSOBackView()
+            BackView()
         }
     }
 }

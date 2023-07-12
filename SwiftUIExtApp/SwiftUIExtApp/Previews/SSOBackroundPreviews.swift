@@ -13,7 +13,7 @@ struct SSOBackroundPreviews: View {
         ZStack {
             VStack() {
                 HStack {
-                    SSOBackView()
+                    BackView()
                     Spacer()
                 }
                 Spacer()

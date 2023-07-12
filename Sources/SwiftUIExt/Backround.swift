@@ -29,7 +29,7 @@ struct SSOBackround_Previews: PreviewProvider {
         ZStack {
             VStack() {
                 HStack {
-                    SSOBackView()
+                    BackView()
                     Spacer()
                 }
                 Spacer()
