@@ -58,7 +58,7 @@ struct ContainerView<Content>: View where Content : View {
         .navigationBarTitleDisplayMode(.inline)
         .toolbar {
             ToolbarItem(placement: .principal) {
-                Text(title).ssoScreenTitle() }
+                Text(title).screenTitle() }
         }
         .toolbar {
             ToolbarItem(placement: .navigationBarLeading) { BackButton() }
@@ -93,50 +93,43 @@ extension ContainerView {
     }
 }
 
-//struct Template_Previews: PreviewProvider {
-//    @MainActor
-//    struct Proxy: View {
-//        static private let tabs = ["SIGN ON", "SIGN IN"]
-//        @State private var selection: String = Proxy.tabs.first ?? ""
-//        var activityLabel: String?
-//        var errorTitle: String?
-//        var errorMessage: String?
-//        @StateObject var asyncViewModel: AsyncViewModel = .init()
-//
-//        var body: some View {
-//            SSOView_Previews.ProxyConainer {
-//                ContainerView(title: "Title") {
-//                    TabButtonsContainerView(selection: $selection) {
-//                        SSOSignUp()
-//                        .padding(.top, repetitions: 2)
-//                        .tabScrollItem(tab: "SIGN ON")
-//                        SSOSignIn()
-//                        .padding(.top, repetitions: 2)
-//                        .tabScrollItem(tab: "SIGN IN")
-//                    }
-//                }
-//                .environmentObject(asyncViewModel)
-//            }
-//            .onAppear {
-//                if let label = activityLabel {
-//                    asyncViewModel.setActivity(label)
-//                }
-//                if let title = errorTitle,
-//                   let message = errorMessage {
-//                    asyncViewModel.setAlert(title, message: message)
-//                }
-//            }
-//        }
-//    }
-//    static var previews: some View {
-//        Proxy()
-//        .previewDisplayName("Activty Off")
-//        Proxy(activityLabel: "")
-//        .previewDisplayName("Activiy Only")
-//        Proxy(activityLabel: "Processing something ...")
-//        .previewDisplayName("Activiy Active")
-//        Proxy(errorTitle: "Error Title",
-//              errorMessage: "Error message")
-//        .previewDisplayName("Error Title")
-//    }
-//}
+struct Template_Previews: PreviewProvider {
+    @MainActor
+    struct Proxy: View {
+        var activityLabel: String?
+        var errorTitle: String?
+        var errorMessage: String?
+        @StateObject var asyncViewModel: AsyncViewModel = .init()
+
+        var body: some View {
+            ContainerView(title: "Title",bgImage: .SSOBg) {
+                VStack{
+                    Text("SIGN ON")
+                }
+                .frame(maxWidth: .greatestFiniteMagnitude)
+                .frame(maxHeight: .greatestFiniteMagnitude)
+            }
+            .environmentObject(asyncViewModel)
+            .onAppear {
+                if let label = activityLabel {
+                    asyncViewModel.setActivity(label)
+                }
+                if let title = errorTitle,
+                   let message = errorMessage {
+                    asyncViewModel.setAlert(title, message: message)
+                }
+            }
+        }
+    }
+    static var previews: some View {
+        Proxy()
+        .previewDisplayName("Activty Off")
+        Proxy(activityLabel: "")
+        .previewDisplayName("Activiy Only")
+        Proxy(activityLabel: "Processing something ...")
+        .previewDisplayName("Activiy Active")
+        Proxy(errorTitle: "Error Title",
+              errorMessage: "Error message")
+        .previewDisplayName("Error Title")
+    }
+}

@@ -58,7 +58,7 @@ extension View {
 }
 
 public
-struct SSOScreenTitle: ViewModifier {
+struct ScreenTitle: ViewModifier {
     public
     func body(content: Content) -> some View {
         content
@@ -67,12 +67,12 @@ struct SSOScreenTitle: ViewModifier {
 }
 public
 extension View {
-    func ssoScreenTitle() -> some View {
-        modifier(SSOScreenTitle())
+    func screenTitle() -> some View {
+        modifier(ScreenTitle())
     }
 }
 public
-struct SSOScreenSubTitle: ViewModifier {
+struct ScreenSubTitle: ViewModifier {
     public
     func body(content: Content) -> some View {
         content
@@ -81,8 +81,8 @@ struct SSOScreenSubTitle: ViewModifier {
 }
 public
 extension View {
-    func ssoScreenSubTitle() -> some View {
-        modifier(SSOScreenSubTitle())
+    func screenSubTitle() -> some View {
+        modifier(ScreenSubTitle())
     }
 }
 
@@ -96,11 +96,11 @@ struct Fonts_Ext: View {
             Text("buttonTitleFont")
                 .buttonTitleFont()
                 .padding()
-            Text("SSOScreenTitle")
-                .ssoScreenTitle()
+            Text("ScreenTitle")
+                .screenTitle()
                 .padding()
-            Text("SSOScreenSubTitle")
-                .ssoScreenSubTitle()
+            Text("ScreenSubTitle")
+                .screenSubTitle()
                 .padding()
         }
     }
