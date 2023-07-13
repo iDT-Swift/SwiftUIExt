@@ -7,9 +7,10 @@
 
 import SwiftUI
 
+public
 struct CaptionError: View {
     var text: String?
-    var body: some View {
+    public var body: some View {
         HStack {
             HStack {
                 Text(text ?? "")
