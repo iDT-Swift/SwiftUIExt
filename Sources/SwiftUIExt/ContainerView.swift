@@ -39,9 +39,11 @@ struct ContainerView<Content>: View where Content : View {
     @State private var isAlertActive: Bool = false
     
     @ViewBuilder var content: Content
+    var bgImage : Image? = nil
 
-    public init(title: String, @ViewBuilder content: @escaping () -> Content) {
+    public init(title: String,bgImage: Image? = nil, @ViewBuilder content: @escaping () -> Content) {
         self.title = title
+        self.bgImage = bgImage
         self.content = content()
     }
     
@@ -62,8 +64,10 @@ struct ContainerView<Content>: View where Content : View {
             ToolbarItem(placement: .navigationBarLeading) { BackButton() }
         }
         .background {
-            SSOBackround()
-                .ignoresSafeArea()
+            if let image = bgImage {
+                BackroundImage(image: image)
+                    .ignoresSafeArea()
+            }
         }
         .activityIndicator(
             isActive: asyncViewModel.isActivityActive,
@@ -88,3 +92,51 @@ extension ContainerView {
         }, message: { Text(asyncViewModel.alertMessage ?? "") })
     }
 }
+
+//struct Template_Previews: PreviewProvider {
+//    @MainActor
+//    struct Proxy: View {
+//        static private let tabs = ["SIGN ON", "SIGN IN"]
+//        @State private var selection: String = Proxy.tabs.first ?? ""
+//        var activityLabel: String?
+//        var errorTitle: String?
+//        var errorMessage: String?
+//        @StateObject var asyncViewModel: AsyncViewModel = .init()
+//
+//        var body: some View {
+//            SSOView_Previews.ProxyConainer {
+//                ContainerView(title: "Title") {
+//                    TabButtonsContainerView(selection: $selection) {
+//                        SSOSignUp()
+//                        .padding(.top, repetitions: 2)
+//                        .tabScrollItem(tab: "SIGN ON")
+//                        SSOSignIn()
+//                        .padding(.top, repetitions: 2)
+//                        .tabScrollItem(tab: "SIGN IN")
+//                    }
+//                }
+//                .environmentObject(asyncViewModel)
+//            }
+//            .onAppear {
+//                if let label = activityLabel {
+//                    asyncViewModel.setActivity(label)
+//                }
+//                if let title = errorTitle,
+//                   let message = errorMessage {
+//                    asyncViewModel.setAlert(title, message: message)
+//                }
+//            }
+//        }
+//    }
+//    static var previews: some View {
+//        Proxy()
+//        .previewDisplayName("Activty Off")
+//        Proxy(activityLabel: "")
+//        .previewDisplayName("Activiy Only")
+//        Proxy(activityLabel: "Processing something ...")
+//        .previewDisplayName("Activiy Active")
+//        Proxy(errorTitle: "Error Title",
+//              errorMessage: "Error message")
+//        .previewDisplayName("Error Title")
+//    }
+//}

@@ -21,7 +21,7 @@ struct SSOBackroundPreviews: View {
             .padding()
         }
         .background {
-            Image.SSOBackground
+            Image.SSOBg
                 .resizable()
                 .scaledToFill()
                 .ignoresSafeArea()

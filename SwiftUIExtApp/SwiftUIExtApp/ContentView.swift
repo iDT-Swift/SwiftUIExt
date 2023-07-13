@@ -18,7 +18,7 @@ struct ContentView: View {
         if let fileURL = fileURL {
             PlayerLooperView(fileURL:fileURL)
         } else {
-            Image.SSOBackground
+            Image.SSOBg
         }
     }
     var body: some View {

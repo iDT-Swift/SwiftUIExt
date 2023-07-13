@@ -8,23 +8,29 @@
 import SwiftUI
 
 extension Image {
-    static public var SSOBackground:Image {
+    static public var SSOBg:Image {
         Image("SSOBackground", bundle: .module)
     }
 }
 
 public
-struct SSOBackround: View {
-    public init() {}
+struct BackroundImage: View {
+    
+    var image : Image
+    
+    public init(image: Image) {
+        self.image = image
+    }
+    
     public
     var body: some View {
-        Image.SSOBackground
-                .resizable()
-                .scaledToFill()
+        image
+            .resizable()
+            .scaledToFill()
     }
 }
 
-struct SSOBackround_Previews: PreviewProvider {
+struct BackroundImage_Previews: PreviewProvider {
     static var previews: some View {
         ZStack {
             VStack() {
@@ -37,7 +43,7 @@ struct SSOBackround_Previews: PreviewProvider {
             .padding()
         }
         .background {
-            SSOBackround()
+            BackroundImage(image: .SSOBg)
                 .ignoresSafeArea()
         }
     }
