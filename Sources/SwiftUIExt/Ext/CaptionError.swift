@@ -10,6 +10,9 @@ import SwiftUI
 public
 struct CaptionError: View {
     var text: String?
+     public init(text: String? = nil) {
+        self.text = text
+    }
     public var body: some View {
         HStack {
             HStack {
