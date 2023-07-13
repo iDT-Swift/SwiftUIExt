@@ -15,6 +15,7 @@ import SwiftUI
  and this comment in stack overflow https://stackoverflow.com/a/73741746 that reffers to the video but also wrote the
  code.
  */
+public
 extension View{
     func sync<T:Equatable>(_ published:Binding<T>,
                            with binding:Binding<T>) -> some View {

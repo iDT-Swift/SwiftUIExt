@@ -7,6 +7,7 @@
 
 import SwiftUI
 
+public
 extension Notification {
     static let onTapOutside = Notification.Name("onTapOutside")
 }

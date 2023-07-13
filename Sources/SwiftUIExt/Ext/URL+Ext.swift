@@ -7,6 +7,7 @@
 
 import SwiftUI
 
+public
 enum URLError: Error {
     case URLCouldNotBeLocated(forResource: String, withExtension: String?)
 }

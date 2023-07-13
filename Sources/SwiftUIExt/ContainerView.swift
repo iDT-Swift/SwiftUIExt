@@ -6,7 +6,6 @@
 //
 
 import SwiftUI
-import SwiftUIExt
 
 /**
  For every content, it is recommended to follow the pattern below in their async and/or try functions:
@@ -33,13 +32,20 @@ import SwiftUIExt
   to be processed to determine whether it was successful or not.
  */
 
+public
 struct ContainerView<Content>: View where Content : View {
     var title: String
     @EnvironmentObject var asyncViewModel: AsyncViewModel
     @State private var isAlertActive: Bool = false
     
     @ViewBuilder var content: Content
-    var body: some View {
+
+    public init(title: String, @ViewBuilder content: @escaping () -> Content) {
+        self.title = title
+        self.content = content()
+    }
+    
+    public var body: some View {
         ScrollView(.vertical, showsIndicators: false) {
             content
             Spacer()
@@ -67,6 +73,8 @@ struct ContainerView<Content>: View where Content : View {
         .modifier(alert)
     }
 }
+
+public
 extension ContainerView {
     var alert: some ViewModifier {
         AlertModifier(title: asyncViewModel.alertTitle ?? "",

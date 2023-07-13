@@ -7,6 +7,7 @@
 
 import SwiftUI
 
+public
 extension UIApplication {
     var currentKeyWindow: UIWindow? {
         UIApplication.shared.connectedScenes
@@ -23,12 +24,14 @@ extension UIApplication {
     }
 }
 
+public
 extension ProcessInfo {
     static var isPreview: Bool {
         processInfo.environment["XCODE_RUNNING_FOR_PREVIEWS"] == "1"
     }
 }
 
+public
 extension Bundle {
     var appVersion: String {
         object(forInfoDictionaryKey: "CFBundleShortVersionString") as! String

@@ -7,6 +7,7 @@
 
 import SwiftUI
 
+public
 extension Encodable {
     var dictionary: Any {
         get throws {
@@ -16,6 +17,7 @@ extension Encodable {
     }
 }
 
+public
 extension Dictionary {
     func percentEncoded() -> Data? {
         map { key, value in
@@ -28,6 +30,7 @@ extension Dictionary {
     }
 }
 
+public
 extension CharacterSet {
     static let urlQueryValueAllowed: CharacterSet = {
         let generalDelimitersToEncode = ":#[]@" // does not include "?" or "/" due to RFC 3986 - Section 3.4
@@ -39,6 +42,7 @@ extension CharacterSet {
     }()
 }
 
+public
 extension Substring {
     var string: String { .init(self) }
 }

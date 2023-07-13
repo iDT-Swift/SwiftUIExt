@@ -9,11 +9,12 @@ import SwiftUI
 import Combine
 
 @MainActor
+public
 class KeyboardResponder: ObservableObject {
-    @Published private(set) var isKeyboardVisible = false
+    @Published public private(set) var isKeyboardVisible = false
     private var cancelables: Set<AnyCancellable> = .init()
 
-    init() {
+    public init() {
         /**
          As of SwiftUI 2.0 and Combine, by default, Publishers will send values on the thread that the notification
          was posted on, and therefore we don't need to use `receive(on) to ensure that sink happens

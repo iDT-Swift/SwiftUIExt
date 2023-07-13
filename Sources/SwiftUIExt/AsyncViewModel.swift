@@ -8,6 +8,7 @@
 import SwiftUI
 
 @MainActor
+public
 class AsyncViewModel: ObservableObject {
     @Published var isActivityActive: Bool = false
     var activityLabel: String?
@@ -16,8 +17,11 @@ class AsyncViewModel: ObservableObject {
     var alertTitle: String?
     var alertMessage: String?
     var alertAction: (()->Void)?
+    
+    public init() {}
 }
 
+public
 extension AsyncViewModel {
     func setActivity(_ label:String) {
         activityLabel = label.count > 0 ? label : nil
@@ -46,7 +50,8 @@ extension AsyncViewModel {
         self.isAlertActive = true
     }
 }
-private
+
+public
 extension AsyncViewModel {
     func postActionsError(_ title:String,
                           message:String,
