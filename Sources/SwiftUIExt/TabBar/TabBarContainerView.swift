@@ -8,8 +8,8 @@
 import SwiftUI
 
 struct TabBarContainerView<Content>: View where Content : View {
-    var alignment: Edge.Set
-    var tabColor: Color
+    var alignment: Edge.Set = .top
+    var tabColor: Color = .white
     var floating: Bool = false
     @Binding var selection: TabBarItem?
     @ViewBuilder let content: Content
