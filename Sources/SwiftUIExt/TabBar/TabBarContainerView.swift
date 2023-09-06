@@ -7,28 +7,25 @@
 
 import SwiftUI
 
-
-/*
-struct TabView<SelectionValue, Content> : View where SelectionValue : Hashable, Content : View {
-
-    public init(selection: Binding<SelectionValue>?, @ViewBuilder content: () -> Content)
- */
-
 struct TabBarContainerView<Content>: View where Content : View {
+    var alignment: Edge.Set
+    var tabColor: Color
+    var floating: Bool = false
     @Binding var selection: TabBarItem?
     @ViewBuilder let content: Content
     @State private var tabs: [TabBarItem] = .init()
     
     var body: some View {
-        VStack(spacing: 0) {
+        ZStack(alignment: alignment.alignment ?? .center) {
+            content.tabBarItemSelection(selection)
             TabBarView(tabs: tabs,
                        selection: $selection,
                        localSelection: selection,
-                       background: .white
+                       background: tabColor
             )
-            ZStack {
-                content.tabBarItemSelection(selection)
-            }
+            .cornerRadius(floating ? 10 : 0)
+            .padding(.horizontal, floating ? .body : 0)
+            .padding(alignment, floating ? .body : 0)
         }
         .onPreferenceChange(TabBarItemPreferenceKey.self) {
             tabs = $0
@@ -39,20 +36,65 @@ struct TabBarContainerView<Content>: View where Content : View {
 struct TabBarContainerView_Previews: PreviewProvider {
     @MainActor
     struct Proxy: View {
+        var title: String
+        var alignment: Edge.Set
+        var tabColor: Color
+        var floating: Bool = false
+        init(title: String,
+             alignment: Edge.Set,
+             tabColor: Color,
+             floating: Bool = false
+        ) {
+            self.title = title
+            self.alignment = alignment
+            self.tabColor = tabColor
+            self.floating = floating
+            TabBarItem.allCases = TabBarItem.allCasesDefault
+        }
         @State private var selection: TabBarItem? = TabBarItem.allCases.first
         var body: some View {
-            TabBarContainerView(selection: $selection) {
-                ForEach(TabBarItem.allCases, id: \.self) {
-                    $0.color.tabBarItem(tab: $0)
+            VStack {
+                Text(title)
+                TabBarContainerView (
+                    alignment: alignment,
+                    tabColor: tabColor,
+                    floating: floating,
+                    selection: $selection) {
+                    ForEach(TabBarItem.allCases, id: \.self) {
+                        innerBody(item: $0)
+                            .tabBarItem(tab: $0)
+                    }
                 }
             }
+            .background(Color.gray)
+        }
+        func innerBody(item: TabBarItem) -> some View {
+            VStack {
+                Text( item.title )
+                    .font(.title)
+            }
+            .frame(maxWidth: .infinity, maxHeight: .infinity)
+            .background(Color.yellow)
         }
     }
     static var previews: some View {
-        VStack {
-            Text("On top of the TabBarView")
-            Proxy()
-        }
-        .background(Color.gray)
+        Proxy(title: "Top Floating TabBarView",
+              alignment: .top,
+              tabColor: Color.white.opacity(0.9))
+        .previewDisplayName("Top")
+        Proxy(title: "Bottom Floating TabBarView",
+              alignment: .bottom,
+              tabColor: Color.white.opacity(0.6))
+        .previewDisplayName("Bottom")
+        Proxy(title: "Top Floating TabBarView",
+              alignment: .top,
+              tabColor: Color.white.opacity(0.9),
+              floating: true)
+        .previewDisplayName("Top F")
+        Proxy(title: "Bottom Floating TabBarView",
+              alignment: .bottom,
+              tabColor: Color.white.opacity(0.6),
+              floating: true)
+        .previewDisplayName("Bottom F")
     }
 }
