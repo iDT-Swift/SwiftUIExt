@@ -78,11 +78,11 @@ struct TabBarContainerView_Previews: PreviewProvider {
         }
     }
     static var previews: some View {
-        Proxy(title: "Top Floating TabBarView",
+        Proxy(title: "Top TabBarView",
               alignment: .top,
               tabColor: Color.white.opacity(0.9))
         .previewDisplayName("Top")
-        Proxy(title: "Bottom Floating TabBarView",
+        Proxy(title: "Bottom TabBarView",
               alignment: .bottom,
               tabColor: Color.white.opacity(0.6))
         .previewDisplayName("Bottom")
