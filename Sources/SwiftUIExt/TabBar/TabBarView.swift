@@ -67,6 +67,9 @@ extension TabBarView {
 struct TabBarView_Previews: PreviewProvider {
     @MainActor
     struct Proxy: View {
+        init() {
+            TabBarItem.allCases = TabBarItem.allCasesDefault
+        }
         var body: some View {
             TabBarView(tabs: TabBarItem.allCases,
                        selection: .constant(TabBarItem.allCases.first),

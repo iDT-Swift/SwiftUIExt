@@ -7,6 +7,18 @@
 
 import SwiftUI
 
+extension Edge.Set {
+    var alignment: Alignment? {
+        switch self {
+        case .bottom: return .bottom
+        case .top: return .top
+        case .leading: return .leading
+        case .trailing: return .trailing
+        default: return nil
+        }
+    }
+}
+
 public
 struct Padding: ViewModifier {
     var edges: Edge.Set
