@@ -22,7 +22,6 @@ struct TabBarView: View {
         self._selection = selection
         self.localSelection = localSelection
         self.background = background
-//        self.namespace = namespace
     }
     public var body: some View {
         HStack {
@@ -71,11 +70,15 @@ struct TabBarView_Previews: PreviewProvider {
             TabBarItem.allCases = TabBarItem.allCasesDefault
         }
         var body: some View {
-            TabBarView(tabs: TabBarItem.allCases,
-                       selection: .constant(TabBarItem.allCases.first),
-                       background: .white
-            )
-            .background(Color.gray)
+            VStack {
+                Spacer()
+                TabBarView(tabs: TabBarItem.allCases,
+                           selection: .constant(TabBarItem.allCases.first),
+                           background: .white
+                )
+                Spacer()
+            }
+            .background(Image.SSOBg.resizable().ignoresSafeArea())
         }
     }
     static var previews: some View {

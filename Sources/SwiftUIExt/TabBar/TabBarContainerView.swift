@@ -25,7 +25,7 @@ struct TabBarContainerView<Content>: View where Content : View {
             )
             .cornerRadius(floating ? 10 : 0)
             .padding(.horizontal, floating ? .body : 0)
-            .padding(alignment, floating ? .body : 0)
+            .padding(alignment, .body)
         }
         .onPreferenceChange(TabBarItemPreferenceKey.self) {
             tabs = $0
@@ -54,7 +54,6 @@ struct TabBarContainerView_Previews: PreviewProvider {
         @State private var selection: TabBarItem? = TabBarItem.allCases.first
         var body: some View {
             VStack {
-                Text(title)
                 TabBarContainerView (
                     alignment: alignment,
                     tabColor: tabColor,
@@ -74,7 +73,7 @@ struct TabBarContainerView_Previews: PreviewProvider {
                     .font(.title)
             }
             .frame(maxWidth: .infinity, maxHeight: .infinity)
-            .background(Color.yellow)
+            .background(Image.SSOBg.resizable().ignoresSafeArea())
         }
     }
     static var previews: some View {
@@ -93,7 +92,7 @@ struct TabBarContainerView_Previews: PreviewProvider {
         .previewDisplayName("Top F")
         Proxy(title: "Bottom Floating TabBarView",
               alignment: .bottom,
-              tabColor: Color.white.opacity(0.6),
+              tabColor: Color.white.opacity(0.2),
               floating: true)
         .previewDisplayName("Bottom F")
     }
