@@ -7,16 +7,34 @@
 
 import SwiftUI
 
+public
 struct TabBarContainerView<Content>: View where Content : View {
     var alignment: Edge.Set = .top
     var tabColor: Color = .white
     var floating: Bool = false
-    @Binding var selection: TabBarItem?
-    @ViewBuilder let content: Content
+    @Binding var selection: TabBarItem
+    private let  content: Content
+    private let onAppaerSelection: TabBarItem
     @State private var tabs: [TabBarItem] = .init()
     
+    public
+    init(
+        alignment: Edge.Set,
+        tabColor: Color,
+        floating: Bool,
+        selection s: Binding<TabBarItem>,
+        @ViewBuilder content: () -> Content) {
+            self.alignment = alignment
+            self.tabColor = tabColor
+            self.floating = floating
+            self._selection = s
+            self.onAppaerSelection = s.wrappedValue
+            self.content = content()
+    }
+    
+    public
     var body: some View {
-        ZStack(alignment: alignment.alignment ?? .center) {
+        ZStack(alignment: alignment.alignment ?? .top) {
             content.tabBarItemSelection(selection)
             TabBarView(tabs: tabs,
                        selection: $selection,
@@ -30,6 +48,9 @@ struct TabBarContainerView<Content>: View where Content : View {
         .onPreferenceChange(TabBarItemPreferenceKey.self) {
             tabs = $0
         }
+        .onAppear {
+            selection = onAppaerSelection
+        }
     }
 }
 
@@ -40,6 +61,7 @@ struct TabBarContainerView_Previews: PreviewProvider {
         var alignment: Edge.Set
         var tabColor: Color
         var floating: Bool = false
+        private let items: [TabBarItem]
         init(title: String,
              alignment: Edge.Set,
              tabColor: Color,
@@ -49,28 +71,29 @@ struct TabBarContainerView_Previews: PreviewProvider {
             self.alignment = alignment
             self.tabColor = tabColor
             self.floating = floating
-            TabBarItem.allCases = TabBarItem.allCasesDefault
+            self.items = TabBarItem.list
+            self.selection = self.items.first!
         }
-        @State private var selection: TabBarItem? = TabBarItem.allCases.first
+        @State private var selection: TabBarItem
         var body: some View {
-            VStack {
-                TabBarContainerView (
-                    alignment: alignment,
-                    tabColor: tabColor,
-                    floating: floating,
-                    selection: $selection) {
-                    ForEach(TabBarItem.allCases, id: \.self) {
-                        innerBody(item: $0)
-                            .tabBarItem(tab: $0)
-                    }
+            TabBarContainerView (
+                alignment: alignment,
+                tabColor: tabColor,
+                floating: floating,
+                selection: $selection)
+            {
+                ForEach(self.items, id: \.self) {
+                    innerBody(item: $0)
+                        .tabBarItem(tab: $0)
                 }
             }
-            .background(Color.gray)
         }
         func innerBody(item: TabBarItem) -> some View {
             VStack {
+                Spacer()
                 Text( item.title )
                     .font(.title)
+                Spacer()
             }
             .frame(maxWidth: .infinity, maxHeight: .infinity)
             .background(Image.SSOBg.resizable().ignoresSafeArea())
@@ -92,7 +115,7 @@ struct TabBarContainerView_Previews: PreviewProvider {
         .previewDisplayName("Top F")
         Proxy(title: "Bottom Floating TabBarView",
               alignment: .bottom,
-              tabColor: Color.white.opacity(0.2),
+              tabColor: Color.white.opacity(0.6),
               floating: true)
         .previewDisplayName("Bottom F")
     }

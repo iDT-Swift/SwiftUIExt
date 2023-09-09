@@ -15,22 +15,27 @@ struct TabView<SelectionValue, Content> : View where SelectionValue : Hashable, 
 
 public
 struct TabButtonsContainerView<Content>: View where Content : View {
+    var alignment: Edge.Set = .top
     @Binding var selection: String
     private let content: Content
     private let onAppaerSelection: String
     @State private var tabs: [String] = .init()
-    public init(selection s: Binding<String>,
-                @ViewBuilder content: () -> Content) {
-        self.content = content()
-        onAppaerSelection = s.wrappedValue
-        _selection = s
+    public init(
+        alignment: Edge.Set,
+        selection s: Binding<String>,
+        @ViewBuilder content: () -> Content) {
+            self.alignment = alignment
+            self.content = content()
+            onAppaerSelection = s.wrappedValue
+            _selection = s
     }
     public var body: some View {
-        VStack(spacing: 0) {
-            TabButtonsView(titles: tabs, selection: $selection)
-            ZStack {
-                content.tabScrollItemSelection(selection)
-            }
+        ZStack(alignment: alignment.alignment ?? .top) {
+            content.tabScrollItemSelection(selection)
+                .padding(alignment,
+                         CGFloat.largeTitle)
+            TabButtonsView(titles: tabs,
+                           selection: $selection)
         }
         .onPreferenceChange(TabScrollItemPreferenceKey.self) {
             tabs = $0
@@ -49,7 +54,9 @@ struct TabButtonsContainerView_Previews: PreviewProvider {
     struct Proxy: View {
         @State var selection: String = "GREEN"
         var body: some View {
-            TabButtonsContainerView(selection: $selection) {
+            TabButtonsContainerView(
+                alignment: .top,
+                selection: $selection) {
                 Color.green.tabScrollItem(tab: "GREEN")
                 Color.yellow.tabScrollItem(tab: "YELLOW")
             }

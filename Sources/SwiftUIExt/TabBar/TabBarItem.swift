@@ -67,11 +67,7 @@ extension TabBarItem {
     static let playroom: TabBarItem = .init(iconName: "heart",
                                             title: "Playroom",
                                             color: .yellow)
-}
-
-extension TabBarItem: CaseIterable {
-    public static var allCases: [TabBarItem] = .init()
-    public static var allCasesDefault: [TabBarItem] =
+    public static var list: [TabBarItem] =
         [
             home, favorites, profile, playroom
         ]

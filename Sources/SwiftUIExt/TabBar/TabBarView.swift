@@ -10,17 +10,17 @@ import SwiftUI
 public
 struct TabBarView: View {
     let tabs: [TabBarItem]
-    @Binding var selection: TabBarItem?
-    @State var localSelection: TabBarItem?
+    @Binding var selection: TabBarItem
+    @State var localSelection: TabBarItem
     var background: Color
     @Namespace private var namespace
     public init(tabs: [TabBarItem],
-                selection: Binding<TabBarItem?> = .constant(nil),
+                selection: Binding<TabBarItem>,
                 localSelection: TabBarItem? = nil,
                 background: Color = .white) {
         self.tabs = tabs
         self._selection = selection
-        self.localSelection = localSelection
+        self.localSelection = localSelection ?? selection.wrappedValue
         self.background = background
     }
     public var body: some View {
@@ -66,14 +66,11 @@ extension TabBarView {
 struct TabBarView_Previews: PreviewProvider {
     @MainActor
     struct Proxy: View {
-        init() {
-            TabBarItem.allCases = TabBarItem.allCasesDefault
-        }
         var body: some View {
             VStack {
                 Spacer()
-                TabBarView(tabs: TabBarItem.allCases,
-                           selection: .constant(TabBarItem.allCases.first),
+                TabBarView(tabs: TabBarItem.list,
+                           selection: .constant(TabBarItem.list.first!),
                            background: .white
                 )
                 Spacer()

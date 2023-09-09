@@ -23,7 +23,9 @@ struct ContentView: View {
     }
     var body: some View {
         VStack {
-            TabButtonsContainerView(selection: $selection) {
+            TabButtonsContainerView(
+                alignment: .top,
+                selection: $selection) {
                 Color.green.tabScrollItem(tab: "GREEN")
                 Color.clear.border(Color.white).tabScrollItem(tab: "CLEAR")
                 Color.yellow.tabScrollItem(tab: "YELLOW")
