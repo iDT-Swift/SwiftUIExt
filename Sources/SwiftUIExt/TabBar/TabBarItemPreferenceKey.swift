@@ -26,6 +26,7 @@ struct TabBarItemViewModifier: ViewModifier {
     }
 }
 
+public
 extension View {
     func tabBarItem(tab: TabBarItem) -> some View {
         modifier(TabBarItemViewModifier(tab: tab))
