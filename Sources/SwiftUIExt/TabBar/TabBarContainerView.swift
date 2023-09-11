@@ -82,7 +82,7 @@ struct TabBarContainerView_Previews: PreviewProvider {
                 floating: floating,
                 selection: $selection)
             {
-                ForEach(self.items, id: \.self) {
+                ForEach(self.items) {
                     innerBody(item: $0)
                         .tabBarItem(tab: $0)
                 }

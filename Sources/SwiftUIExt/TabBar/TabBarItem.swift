@@ -54,6 +54,10 @@ struct TabBarItem: Hashable {
     var color: Color
 }
 
+extension TabBarItem: Identifiable {
+    public var id: String { title }
+}
+
 extension TabBarItem {
     static let home: TabBarItem = .init(iconName: "house",
                                         title: "House",
