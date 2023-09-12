@@ -8,29 +8,31 @@
 import SwiftUI
 
 public
-struct TabBarView: View {
-    let tabs: [TabBarItem]
-    @Binding var selection: TabBarItem
-    @State var localSelection: TabBarItem
+struct TabBarView<T: TabBarItem>: View {
+    let tabs: [T]
+    @Binding var selection: T
+    @State var localSelection: T? = nil
     var background: Color
     @Namespace private var namespace
-    public init(tabs: [TabBarItem],
-                selection: Binding<TabBarItem>,
-                localSelection: TabBarItem? = nil,
+    public init(tabs: [T],
+                selection: Binding<T>,
+                localSelection: T? = nil,
                 background: Color = .white) {
         self.tabs = tabs
         self._selection = selection
-        self.localSelection = localSelection ?? selection.wrappedValue
         self.background = background
     }
     public var body: some View {
         HStack {
-            ForEach(tabs, id: \.self) { tab in
+            ForEach(tabs) { tab in
                 tabView(tab: tab)
                     .onTapGesture { switchToTab(tab: tab) }
             }
         }
         .background(background)
+        .onAppear {
+            localSelection = selection
+        }
         .onChange(of: selection) { value in
             withAnimation(.easeInOut) {
                 localSelection = value
@@ -39,7 +41,7 @@ struct TabBarView: View {
     }
 }
 extension TabBarView {
-    private func tabView(tab: TabBarItem) -> some View {
+    private func tabView(tab: T) -> some View {
         VStack {
             Image(systemName: tab.iconName).font(.subheadline)
             Text(tab.title)
@@ -58,7 +60,7 @@ extension TabBarView {
             }
         )
     }
-    private func switchToTab(tab: TabBarItem) {
+    private func switchToTab(tab: T) {
         withAnimation(.easeInOut) { selection = tab }
     }
 }
@@ -69,8 +71,8 @@ struct TabBarView_Previews: PreviewProvider {
         var body: some View {
             VStack {
                 Spacer()
-                TabBarView(tabs: TabBarItem.list,
-                           selection: .constant(TabBarItem.list.first!),
+                TabBarView(tabs: TabBarItemValue.list,
+                           selection: .constant(TabBarItemValue.list.first!),
                            background: .white
                 )
                 Spacer()

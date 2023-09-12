@@ -8,21 +8,23 @@
 import SwiftUI
 
 public
-struct TabBarContainerView<Content>: View where Content : View {
+struct TabBarContainerView<Content,T>: View
+where Content : View, T: TabBarItem
+{
     var alignment: Edge.Set = .top
     var tabColor: Color = .white
     var floating: Bool = false
-    @Binding var selection: TabBarItem
+    @Binding var selection: T
     private let  content: Content
-    private let onAppaerSelection: TabBarItem
-    @State private var tabs: [TabBarItem] = .init()
+    private let onAppaerSelection: T
+    @State private var tabs: [T] = .init()
     
     public
     init(
         alignment: Edge.Set,
         tabColor: Color,
         floating: Bool,
-        selection s: Binding<TabBarItem>,
+        selection s: Binding<T>,
         @ViewBuilder content: () -> Content) {
             self.alignment = alignment
             self.tabColor = tabColor
@@ -38,7 +40,7 @@ struct TabBarContainerView<Content>: View where Content : View {
             content.tabBarItemSelection(selection)
             TabBarView(tabs: tabs,
                        selection: $selection,
-                       localSelection: selection,
+                       //localSelection: selection,
                        background: tabColor
             )
             .cornerRadius(floating ? 10 : 0)
@@ -61,7 +63,7 @@ struct TabBarContainerView_Previews: PreviewProvider {
         var alignment: Edge.Set
         var tabColor: Color
         var floating: Bool = false
-        private let items: [TabBarItem]
+        private let items: [TabBarItemValue]
         init(title: String,
              alignment: Edge.Set,
              tabColor: Color,
@@ -71,10 +73,10 @@ struct TabBarContainerView_Previews: PreviewProvider {
             self.alignment = alignment
             self.tabColor = tabColor
             self.floating = floating
-            self.items = TabBarItem.list
+            self.items = TabBarItemValue.list
             self.selection = self.items.first!
         }
-        @State private var selection: TabBarItem
+        @State private var selection: TabBarItemValue
         var body: some View {
             TabBarContainerView (
                 alignment: alignment,
@@ -88,7 +90,7 @@ struct TabBarContainerView_Previews: PreviewProvider {
                 }
             }
         }
-        func innerBody(item: TabBarItem) -> some View {
+        func innerBody(item: TabBarItemValue) -> some View {
             VStack {
                 Spacer()
                 Text( item.title )

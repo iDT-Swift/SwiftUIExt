@@ -7,28 +7,37 @@
 
 import SwiftUI
 
-struct TabBarItemPreferenceKey: PreferenceKey {
-    static var defaultValue: [TabBarItem] = .init()
+struct TabBarItemPreferenceKey<T>: PreferenceKey
+where T: TabBarItem
+{
+    static var defaultValue: [T] { [] }
     
-    static func reduce(value: inout [TabBarItem], nextValue: () -> [TabBarItem]) {
+    static func reduce(value: inout [T], nextValue: () -> [T]) {
         value.append(contentsOf: nextValue())
     }
 }
 
-struct TabBarItemViewModifier: ViewModifier {
-    let tab: TabBarItem
-    @Environment(\.tabBarItemSelection) var selection: TabBarItem?
+struct TabBarItemViewModifier<T: TabBarItem>: ViewModifier {
+    let tab: T
+    @Environment(\.tabBarItemSelection) var anySelection: AnyHashable?
+    
+    var selection: T? {
+        anySelection as? T
+    }
     
     func body(content: Content) -> some View {
         content
             .opacity(tab == selection ? 1.0 : 0.0)
-            .preference(key: TabBarItemPreferenceKey.self, value: [tab])
+            .preference(key: TabBarItemPreferenceKey<T>.self, value: [tab])
     }
 }
 
+
 public
 extension View {
-    func tabBarItem(tab: TabBarItem) -> some View {
+    func tabBarItem<T>(tab: T) -> some View
+    where T: TabBarItem
+    {
         modifier(TabBarItemViewModifier(tab: tab))
     }
 }

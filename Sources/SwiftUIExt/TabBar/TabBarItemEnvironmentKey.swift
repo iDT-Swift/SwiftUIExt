@@ -8,18 +8,19 @@
 import SwiftUI
 
 private struct TabBarItemEnvironmentKey: EnvironmentKey {
-    static let defaultValue: TabBarItem? = nil
+    static let defaultValue: AnyHashable? = nil
 }
 
 extension EnvironmentValues {
-    var tabBarItemSelection: TabBarItem? {
+    var tabBarItemSelection: AnyHashable? {
         get { self[TabBarItemEnvironmentKey.self] }
         set { self[TabBarItemEnvironmentKey.self] = newValue }
     }
 }
 
 extension View {
-    func tabBarItemSelection(_ selection: TabBarItem?) -> some View {
+    func tabBarItemSelection(_ selection: AnyHashable?) -> some View {
         environment(\.tabBarItemSelection, selection)
     }
 }
+
