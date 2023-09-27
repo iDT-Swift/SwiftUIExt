@@ -1,5 +1,5 @@
 //
-//  SwiftUIView.swift
+//  CGFloat.swift
 //  
 //
 //  Created by Gustavo Halperin on 5/18/23.
@@ -29,7 +29,13 @@ extension UIFont.TextStyle {
 }
 
 public
+extension Int {
+    var cgFloat: CGFloat { CGFloat(self) }
+}
+
+public
 extension CGFloat {
+    static var doubleLargeTitle: CGFloat { UIFont.TextStyle.largeTitle.pointSize * 2}
     static var largeTitle: CGFloat { UIFont.TextStyle.largeTitle.pointSize }
     static var title1: CGFloat { UIFont.TextStyle.title1.pointSize }
     static var title2: CGFloat { UIFont.TextStyle.title2.pointSize }

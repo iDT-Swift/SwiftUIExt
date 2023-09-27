@@ -1,5 +1,5 @@
 //
-//  SwiftUIView.swift
+//  CaptionError.swift
 //  
 //
 //  Created by Gustavo Halperin on 6/8/23.

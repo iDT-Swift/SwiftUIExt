@@ -7,6 +7,77 @@
 
 import SwiftUI
 
+/**
+ iPhone Mini Models
+ - iPhone 12 Mini, iPhone 13 Mini: 1080 x 2340 pixels, 476 points per inch (PPI), 5.4-inch screen
+ - Logical Resolution: 360 x 780 points
+ 
+ Regular iPhone Models
+ - iPhone 6, 6s, 7, 8, SE (2nd generation): 750 x 1334 pixels, 326 PPI, 4.7-inch screen
+    - Logical Resolution: 375 x 667 points
+ - iPhone X, XS, 11 Pro: 1125 x 2436 pixels, 458 PPI, 5.8-inch screen
+    - Logical Resolution: 375 x 812 points
+ - iPhone XR, 11: 828 x 1792 pixels, 326 PPI, 6.1-inch screen
+    - Logical Resolution: 414 x 896 points
+ - iPhone 12, 12 Pro, 13, 13 Pro: 1170 x 2532 pixels, 460 PPI, 6.1-inch screen
+    - Logical Resolution: 390 x 844 points //TARGET
+ 
+ Plus and Max iPhone Models
+ - iPhone 6 Plus, 6s Plus, 7 Plus, 8 Plus: 1080 x 1920 pixels, 401 PPI, 5.5-inch screen
+    - Logical Resolution: 414 x 736 points
+ - iPhone XS Max, 11 Pro Max: 1242 x 2688 pixels, 458 PPI, 6.5-inch screen
+    - Logical Resolution: 414 x 896 points
+ - iPhone 12 Pro Max, 13 Pro Max: 1284 x 2778 pixels, 458 PPI, 6.7-inch screen
+    - Logical Resolution: 428 x 926 points
+ */
+//fileprivate
+public
+let sizeFactor = CGSize(width: UIScreen.main.bounds.size.width / 390,
+                        height: UIScreen.main.bounds.size.height / 844)
+
+// Protea
+public
+struct BackgroundTitleLimelightFont: ViewModifier {
+    public
+    static let size: CGFloat = .largeTitle * 1.7 * sizeFactor.width
+    let alignment: TextAlignment
+    public
+    func body(content: Content) -> some View {
+        content
+            .multilineTextAlignment(alignment)
+            .font(Font.custom("Limelight-Regular",
+                              size: Self.size))
+            .bold()
+    }
+}
+public
+extension View {
+    func backgroundTitleLimelightFont(alignment: TextAlignment = .center)
+    -> some View {
+        modifier(BackgroundTitleLimelightFont(alignment: alignment))
+    }
+}
+
+public
+struct ButtonTitleJosefinSansFont: ViewModifier {
+    private static let size: CGFloat = .title3 * sizeFactor.width
+    public
+    func body(content: Content) -> some View {
+        content
+            .multilineTextAlignment(.center)
+            .font(Font.custom("JosefinSans-Medium",
+                              size: Self.size))
+    }
+}
+public
+extension View {
+    func buttonTitleJosefinSansFont() -> some View {
+        modifier(ButtonTitleJosefinSansFont())
+    }
+}
+
+// Legacy Utils - Sep 12, 2023
+
 public
 struct BackgroundTitleFont: ViewModifier {
     public
@@ -14,7 +85,7 @@ struct BackgroundTitleFont: ViewModifier {
         content
             .multilineTextAlignment(.center)
             .font(Font.custom("PlayfairDisplay-Regular",
-                                  size: .largeTitle))
+                              size: .largeTitle))
     }
 }
 public
@@ -90,6 +161,12 @@ fileprivate
 struct Fonts_Ext: View {
     var body: some View {
         VStack {
+            Text("Limelight Font")
+                .backgroundTitleLimelightFont()
+                .padding()
+            Text("Josefin Sans")
+                .buttonTitleJosefinSansFont()
+                .padding()
             Text("backgroundTitleFont")
                 .backgroundTitleFont()
                 .padding()

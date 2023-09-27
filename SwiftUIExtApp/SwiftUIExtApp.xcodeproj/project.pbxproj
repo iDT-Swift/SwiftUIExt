@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		C90688DC2A203B5000A43773 /* WelcomeBackground.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = C90688DB2A203B5000A43773 /* WelcomeBackground.mp4 */; };
+		C9CFEDE32ABD30FA008A75D0 /* PageIndex.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9CFEDE22ABD30FA008A75D0 /* PageIndex.swift */; };
 		C9D6347B2A173CF500F6C1CC /* SwiftUIExtAppApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9D6347A2A173CF500F6C1CC /* SwiftUIExtAppApp.swift */; };
 		C9D6347D2A173CF500F6C1CC /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9D6347C2A173CF500F6C1CC /* ContentView.swift */; };
 		C9D6347F2A173CF600F6C1CC /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C9D6347E2A173CF600F6C1CC /* Assets.xcassets */; };
@@ -38,6 +39,7 @@
 
 /* Begin PBXFileReference section */
 		C90688DB2A203B5000A43773 /* WelcomeBackground.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = WelcomeBackground.mp4; sourceTree = "<group>"; };
+		C9CFEDE22ABD30FA008A75D0 /* PageIndex.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PageIndex.swift; sourceTree = "<group>"; };
 		C9D634772A173CF500F6C1CC /* SwiftUIExtApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SwiftUIExtApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C9D6347A2A173CF500F6C1CC /* SwiftUIExtAppApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwiftUIExtAppApp.swift; sourceTree = "<group>"; };
 		C9D6347C2A173CF500F6C1CC /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -165,6 +167,7 @@
 			isa = PBXGroup;
 			children = (
 				C9D634AF2A1755D100F6C1CC /* SSOBackroundPreviews.swift */,
+				C9CFEDE22ABD30FA008A75D0 /* PageIndex.swift */,
 			);
 			path = Previews;
 			sourceTree = "<group>";
@@ -306,6 +309,7 @@
 				C9D6347D2A173CF500F6C1CC /* ContentView.swift in Sources */,
 				C9D634B02A1755D100F6C1CC /* SSOBackroundPreviews.swift in Sources */,
 				C9D6347B2A173CF500F6C1CC /* SwiftUIExtAppApp.swift in Sources */,
+				C9CFEDE32ABD30FA008A75D0 /* PageIndex.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

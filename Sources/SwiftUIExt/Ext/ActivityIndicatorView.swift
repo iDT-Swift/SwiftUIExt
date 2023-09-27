@@ -57,6 +57,12 @@ extension View {
             .blur(radius: isActive ? blur : 0)
             .modifier(ActivityIndicator(isActive: isActive, label: label))
     }
+    func activityIndicator(label:String? = nil, blur: CGFloat = 5) -> some View {
+        self
+            .blur(radius: label != nil ? blur : 0)
+            .modifier(ActivityIndicator(isActive: label != nil,
+                                        label: label))
+    }
 }
 
 struct ActivityIndicatorView_Previews: PreviewProvider {

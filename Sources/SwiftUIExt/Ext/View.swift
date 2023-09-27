@@ -1,5 +1,5 @@
 //
-//  SwiftUIView.swift
+//  View+Sync.swift
 //  
 //
 //  Created by Gustavo Halperin on 6/15/23.

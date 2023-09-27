@@ -16,13 +16,18 @@ protocol TabBarItem: Equatable, Hashable, Identifiable
 }
 
 public
-struct TabBarItemValue: TabBarItem, Hashable
+struct TabBarItemValue: TabBarItem
 {
     public var iconName: String
     public var title: String
     public var color: Color
     
     public var id: String { title }
+    public init(iconName: String, title: String, color: Color) {
+        self.iconName = iconName
+        self.title = title
+        self.color = color
+    }
 }
 
 extension TabBarItemValue {
