@@ -11,7 +11,7 @@ public
 struct AlertModifier<S, A, M>: ViewModifier
 where  S : StringProtocol, A : View, M : View
 {
-    private var radius: CGFloat { isPresented == true ? 2 : 0 }
+    //private var radius: CGFloat { isPresented == true ? 2 : 0 }
     let title: S
     @Binding var isPresented: Bool
     @ViewBuilder let actions: () -> A
@@ -28,7 +28,7 @@ where  S : StringProtocol, A : View, M : View
     }
     public func body(content: Content) -> some View {
         content
-            .blur(radius: radius)
+            .blur(radius: isPresented ? 2 : 0 )
             .alert(title,
                    isPresented: $isPresented,
                    actions: actions,
@@ -56,6 +56,5 @@ struct AlertModifier_Previews: PreviewProvider {
             }
         }
         .modifier(alertError)
-        
     }
 }

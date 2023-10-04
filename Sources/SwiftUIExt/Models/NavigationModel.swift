@@ -8,8 +8,6 @@
 import SwiftUI
 import Combine
 
-
-
 /**
  This class will load from the User Defaults the last NavigationPath used in @path.
  This class will automatically update into the UserDefaults with any change in @path.

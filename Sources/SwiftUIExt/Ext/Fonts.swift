@@ -37,9 +37,31 @@ let sizeFactor = CGSize(width: UIScreen.main.bounds.size.width / 390,
 
 // Protea
 public
+struct NavigationBarTittleLimelightFont: ViewModifier {
+    public
+    static let size: CGFloat = .largeTitle * sizeFactor.width
+    let alignment: TextAlignment
+    public
+    func body(content: Content) -> some View {
+        content
+            .multilineTextAlignment(alignment)
+            .font(Font.custom("Limelight-Regular",
+                              size: Self.size))
+            .bold()
+    }
+}
+public
+extension View {
+    func navigationBarTittleLimelightFont(alignment: TextAlignment = .center)
+    -> some View {
+        modifier(NavigationBarTittleLimelightFont(alignment: alignment))
+    }
+}
+
+public
 struct BackgroundTitleLimelightFont: ViewModifier {
     public
-    static let size: CGFloat = .largeTitle * 1.7 * sizeFactor.width
+    static let size: CGFloat = .largeTitle * 1.6 * sizeFactor.width
     let alignment: TextAlignment
     public
     func body(content: Content) -> some View {
