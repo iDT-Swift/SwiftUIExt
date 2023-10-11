@@ -29,11 +29,6 @@ extension UIFont.TextStyle {
 }
 
 public
-extension Int {
-    var cgFloat: CGFloat { CGFloat(self) }
-}
-
-public
 extension CGFloat {
     static var doubleLargeTitle: CGFloat { UIFont.TextStyle.largeTitle.pointSize * 2}
     static var largeTitle: CGFloat { UIFont.TextStyle.largeTitle.pointSize }

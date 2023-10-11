@@ -22,7 +22,6 @@ extension Color {
 
 public
 extension Color {
-    
     enum CaptionError {
         public static var foreground: Color = .init(0xFFFFFF)
         public static var background: Color = .init(0x545454)
