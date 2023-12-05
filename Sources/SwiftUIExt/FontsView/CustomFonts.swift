@@ -21,6 +21,8 @@ actor CustomFonts {
     var fonst: [(String, String)] { Manifest }
     public func registerFonts() throws {
         do {
+            //TODO: https://spree3d-jira.atlassian.net/browse/PRO-80
+            //TODO: ...Don't stop the loop and throw the errors at the end
             try Manifest.forEach {
                 try registerFont(bundle: .module,
                                  fontName: $0.0,
@@ -33,7 +35,7 @@ actor CustomFonts {
     
     public enum FontRegistrationError: Error {
         case fontCreationFailed
-        case fontRegistrationFailed(Error)
+        case fontRegistrationFailed(Error?)
     }
     
     private func registerFont(bundle: Bundle, fontName: String, fontExtension: String) throws {
@@ -46,14 +48,10 @@ actor CustomFonts {
 
         var error: Unmanaged<CFError>?
         guard CTFontManagerRegisterGraphicsFont(font, &error) else {
-            if let cfError = error?.takeRetainedValue() {
-                // Release error as not to cause a memory leak
-                error?.release()
-                throw FontRegistrationError.fontRegistrationFailed(cfError)
-            } else {
-                error?.release()
-                throw FontRegistrationError.fontRegistrationFailed(NSError(domain: "", code: 0, userInfo: nil) as Error)
-            }
+            let cfError = error?.takeRetainedValue()
+            // Release error as not to cause a memory leak
+            error?.release()
+            throw FontRegistrationError.fontRegistrationFailed(cfError)
         }
     }
 }

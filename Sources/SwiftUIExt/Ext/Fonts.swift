@@ -192,7 +192,6 @@ extension View {
 
 private struct Fonts_Ext: View {
     @State private var fontsRegistered = false
-    @State private var registrationError: Error?
 
     var body: some View {
         VStack {
