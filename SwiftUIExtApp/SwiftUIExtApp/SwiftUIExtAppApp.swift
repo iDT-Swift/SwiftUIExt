@@ -16,8 +16,12 @@ struct SwiftUIExtAppApp: App {
             if isLoading {
                 Text("Is loading ...")
                     .task {
-                        await CustomFonts.shared.registerFonts()
-                        isLoading = false
+                        do {
+                            try await CustomFonts.shared.registerFonts()
+                        }
+                        catch {
+                            print(error)
+                        }
                     }
             } else {
 //                TabView(){

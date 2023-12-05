@@ -11,7 +11,7 @@ import SwiftUI
  iPhone Mini Models
  - iPhone 12 Mini, iPhone 13 Mini: 1080 x 2340 pixels, 476 points per inch (PPI), 5.4-inch screen
  - Logical Resolution: 360 x 780 points
- 
+
  Regular iPhone Models
  - iPhone 6, 6s, 7, 8, SE (2nd generation): 750 x 1334 pixels, 326 PPI, 4.7-inch screen
     - Logical Resolution: 375 x 667 points
@@ -21,7 +21,7 @@ import SwiftUI
     - Logical Resolution: 414 x 896 points
  - iPhone 12, 12 Pro, 13, 13 Pro: 1170 x 2532 pixels, 460 PPI, 6.1-inch screen
     - Logical Resolution: 390 x 844 points //TARGET
- 
+
  Plus and Max iPhone Models
  - iPhone 6 Plus, 6s Plus, 7 Plus, 8 Plus: 1080 x 1920 pixels, 401 PPI, 5.5-inch screen
     - Logical Resolution: 414 x 736 points
@@ -30,7 +30,7 @@ import SwiftUI
  - iPhone 12 Pro Max, 13 Pro Max: 1284 x 2778 pixels, 458 PPI, 6.7-inch screen
     - Logical Resolution: 428 x 926 points
  */
-//fileprivate
+// fileprivate
 public
 let sizeFactor = CGSize(width: UIScreen.main.bounds.size.width / 390,
                         height: UIScreen.main.bounds.size.height / 844)
@@ -50,10 +50,12 @@ struct NavigationBarTittleLimelightFont: ViewModifier {
             .bold()
     }
 }
+
 public
 extension View {
     func navigationBarTittleLimelightFont(alignment: TextAlignment = .center)
-    -> some View {
+        -> some View
+    {
         modifier(NavigationBarTittleLimelightFont(alignment: alignment))
     }
 }
@@ -72,10 +74,12 @@ struct BackgroundTitleLimelightFont: ViewModifier {
             .bold()
     }
 }
+
 public
 extension View {
     func backgroundTitleLimelightFont(alignment: TextAlignment = .center)
-    -> some View {
+        -> some View
+    {
         modifier(BackgroundTitleLimelightFont(alignment: alignment))
     }
 }
@@ -91,6 +95,7 @@ struct ButtonTitleJosefinSansFont: ViewModifier {
                               size: Self.size))
     }
 }
+
 public
 extension View {
     func buttonTitleJosefinSansFont() -> some View {
@@ -110,6 +115,7 @@ struct BackgroundTitleFont: ViewModifier {
                               size: .largeTitle))
     }
 }
+
 public
 extension View {
     func backgroundTitleFont() -> some View {
@@ -124,9 +130,10 @@ struct AlertTitleFont: ViewModifier {
         content
             .multilineTextAlignment(.center)
             .font(Font.custom("PlayfairDisplay-Regular",
-                                  size: .title1))
+                              size: .title1))
     }
 }
+
 public
 extension View {
     func alertTitleFont() -> some View {
@@ -143,6 +150,7 @@ struct ButtonTitleFont: ViewModifier {
             .font(Font.custom("Lato-Regular", size: .body))
     }
 }
+
 public
 extension View {
     func buttonTitleFont() -> some View {
@@ -158,12 +166,14 @@ struct ScreenTitle: ViewModifier {
             .font(Font.custom("PlayfairDisplay-Regular", size: .title1))
     }
 }
+
 public
 extension View {
     func screenTitle() -> some View {
         modifier(ScreenTitle())
     }
 }
+
 public
 struct ScreenSubTitle: ViewModifier {
     public
@@ -172,6 +182,7 @@ struct ScreenSubTitle: ViewModifier {
             .font(Font.custom("Lato-Regular", size: .footnote))
     }
 }
+
 public
 extension View {
     func screenSubTitle() -> some View {
@@ -179,28 +190,46 @@ extension View {
     }
 }
 
-fileprivate
-struct Fonts_Ext: View {
+private struct Fonts_Ext: View {
+    @State private var fontsRegistered = false
+
     var body: some View {
         VStack {
-            Text("Limelight Font")
-                .backgroundTitleLimelightFont()
-                .padding()
-            Text("Josefin Sans")
-                .buttonTitleJosefinSansFont()
-                .padding()
-            Text("backgroundTitleFont")
-                .backgroundTitleFont()
-                .padding()
-            Text("buttonTitleFont")
-                .buttonTitleFont()
-                .padding()
-            Text("ScreenTitle")
-                .screenTitle()
-                .padding()
-            Text("ScreenSubTitle")
-                .screenSubTitle()
-                .padding()
+            if fontsRegistered {
+                Text("Limelight Font")
+                    .backgroundTitleLimelightFont()
+                    .padding()
+                Text("Josefin Sans")
+                    .buttonTitleJosefinSansFont()
+                    .padding()
+                Text("backgroundTitleFont")
+                    .backgroundTitleFont()
+                    .padding()
+                Text("buttonTitleFont")
+                    .buttonTitleFont()
+                    .padding()
+                Text("ScreenTitle")
+                    .screenTitle()
+                    .padding()
+                Text("ScreenSubTitle")
+                    .screenSubTitle()
+                    .padding()
+            } else {
+                ProgressView() // Show a loader or progress indicator while registering fonts
+                    .onAppear {
+                        Task {
+                            do {
+                                try await CustomFonts.shared.registerFonts()
+                                fontsRegistered = true
+                            }
+                            catch {
+                                print(error)
+                            }
+                           
+                            
+                        }
+                    }
+            }
         }
     }
 }
