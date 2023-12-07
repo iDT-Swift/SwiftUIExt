@@ -12,12 +12,10 @@ actor CustomFonts {
     public static let shared: CustomFonts = .init()
     private init() {}
     private let Manifest = [
-        ("Lato-Regular", "ttf"),
         ("JosefinSans-Regular", "ttf"),
         ("JosefinSans-Medium", "ttf"),
         ("JosefinSans-Bold", "ttf"),
         ("JosefinSans-Light", "ttf"),
-        ("PlayfairDisplay-Regular", "otf"),
         ("Limelight-Regular", "ttf"),
     ]
     public nonisolated
