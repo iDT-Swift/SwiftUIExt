@@ -11,7 +11,6 @@ import SwiftUI
  iPhone Mini Models
  - iPhone 12 Mini, iPhone 13 Mini: 1080 x 2340 pixels, 476 points per inch (PPI), 5.4-inch screen
  - Logical Resolution: 360 x 780 points
-
  Regular iPhone Models
  - iPhone 6, 6s, 7, 8, SE (2nd generation): 750 x 1334 pixels, 326 PPI, 4.7-inch screen
     - Logical Resolution: 375 x 667 points
@@ -21,7 +20,6 @@ import SwiftUI
     - Logical Resolution: 414 x 896 points
  - iPhone 12, 12 Pro, 13, 13 Pro: 1170 x 2532 pixels, 460 PPI, 6.1-inch screen
     - Logical Resolution: 390 x 844 points //TARGET
-
  Plus and Max iPhone Models
  - iPhone 6 Plus, 6s Plus, 7 Plus, 8 Plus: 1080 x 1920 pixels, 401 PPI, 5.5-inch screen
     - Logical Resolution: 414 x 736 points
@@ -30,164 +28,90 @@ import SwiftUI
  - iPhone 12 Pro Max, 13 Pro Max: 1284 x 2778 pixels, 458 PPI, 6.7-inch screen
     - Logical Resolution: 428 x 926 points
  */
-// fileprivate
+
 public
 let sizeFactor = CGSize(width: UIScreen.main.bounds.size.width / 390,
                         height: UIScreen.main.bounds.size.height / 844)
 
-// Protea
-public
-struct NavigationBarTittleLimelightFont: ViewModifier {
-    public
-    static let size: CGFloat = .largeTitle * sizeFactor.width
-    let alignment: TextAlignment
-    public
+struct JosefinSansFontModifier: ViewModifier {
+    enum Style: String {
+        case regular = "JosefinSans-Regular"
+        case medium = "JosefinSans-Medium"
+        case light = "JosefinSans-Light"
+        case bold = "JosefinSans-Bold"
+    }
+
+    var style: Style
+    var size: CGFloat
+
     func body(content: Content) -> some View {
-        content
-            .multilineTextAlignment(alignment)
-            .font(Font.custom("Limelight-Regular",
-                              size: Self.size))
-            .bold()
+        content.font(.custom(style.rawValue, size: size * sizeFactor.width))
     }
 }
 
-public
-extension View {
-    func navigationBarTittleLimelightFont(alignment: TextAlignment = .center)
-        -> some View
-    {
-        modifier(NavigationBarTittleLimelightFont(alignment: alignment))
-    }
-}
+struct LimelightFontModifier: ViewModifier {
+    var weight: Font.Weight
+    var size: CGFloat
 
-public
-struct BackgroundTitleLimelightFont: ViewModifier {
-    public
-    static let size: CGFloat = .largeTitle * 1.6 * sizeFactor.width
-    let alignment: TextAlignment
-    public
     func body(content: Content) -> some View {
-        content
-            .multilineTextAlignment(alignment)
-            .font(Font.custom("Limelight-Regular",
-                              size: Self.size))
-            .bold()
+        content.font(.custom("Limelight-Regular", size: size * sizeFactor.width).weight(weight))
     }
 }
 
-public
-extension View {
-    func backgroundTitleLimelightFont(alignment: TextAlignment = .center)
-        -> some View
-    {
-        modifier(BackgroundTitleLimelightFont(alignment: alignment))
-    }
-}
+struct SFProFontModifier: ViewModifier {
+    var weight: Font.Weight
+    var size: CGFloat
 
-public
-struct ButtonTitleJosefinSansFont: ViewModifier {
-    private static let size: CGFloat = .title3 * sizeFactor.width
-    public
     func body(content: Content) -> some View {
-        content
-            .multilineTextAlignment(.center)
-            .font(Font.custom("JosefinSans-Medium",
-                              size: Self.size))
+        content.font(.system(size: size * sizeFactor.width, weight: weight))
     }
 }
 
-public
+// Extensions
 extension View {
-    func buttonTitleJosefinSansFont() -> some View {
-        modifier(ButtonTitleJosefinSansFont())
-    }
-}
-
-// Legacy Utils - Sep 12, 2023
-
-public
-struct BackgroundTitleFont: ViewModifier {
+    /**
+     Begin Josefin Sans modifiers */
     public
-    func body(content: Content) -> some View {
-        content
-            .multilineTextAlignment(.center)
-            .font(Font.custom("PlayfairDisplay-Regular",
-                              size: .largeTitle))
+    func josefinHeaderStyle(size: CGFloat = .title1) -> some View {
+        modifier(JosefinSansFontModifier(style: .bold, size: size))
     }
-}
 
-public
-extension View {
-    func backgroundTitleFont() -> some View {
-        modifier(BackgroundTitleFont())
-    }
-}
-
-public
-struct AlertTitleFont: ViewModifier {
     public
-    func body(content: Content) -> some View {
-        content
-            .multilineTextAlignment(.center)
-            .font(Font.custom("PlayfairDisplay-Regular",
-                              size: .title1))
+    func josefinBodyStyle(size: CGFloat = .title3) -> some View {
+        modifier(JosefinSansFontModifier(style: .regular, size: size))
     }
-}
 
-public
-extension View {
-    func alertTitleFont() -> some View {
-        modifier(AlertTitleFont())
-    }
-}
-
-public
-struct ButtonTitleFont: ViewModifier {
     public
-    func body(content: Content) -> some View {
-        content
-            .multilineTextAlignment(.center)
-            .font(Font.custom("Lato-Regular", size: .body))
+    func josefinButtonStyle(size: CGFloat = .caption1) -> some View {
+        modifier(JosefinSansFontModifier(style: .medium, size: size))
     }
-}
 
-public
-extension View {
-    func buttonTitleFont() -> some View {
-        modifier(ButtonTitleFont())
-    }
-}
-
-public
-struct ScreenTitle: ViewModifier {
     public
-    func body(content: Content) -> some View {
-        content
-            .font(Font.custom("PlayfairDisplay-Regular", size: .title1))
+    func josefinSubtitleStyle(size: CGFloat = .caption1) -> some View {
+        modifier(JosefinSansFontModifier(style: .light, size: size))
     }
-}
 
-public
-extension View {
-    func screenTitle() -> some View {
-        modifier(ScreenTitle())
-    }
-}
+    /**
+     End Josefin Sans modifiers */
 
-public
-struct ScreenSubTitle: ViewModifier {
+    /**
+     Begin Limelight modifiers */
     public
-    func body(content: Content) -> some View {
-        content
-            .font(Font.custom("Lato-Regular", size: .footnote))
+    func limelightBodyStyle(size: CGFloat = .largeTitle) -> some View {
+        modifier(LimelightFontModifier(weight: .regular, size: size))
     }
-}
 
-public
-extension View {
-    func screenSubTitle() -> some View {
-        modifier(ScreenSubTitle())
+    /**
+     End Limelight modifiers */
+
+    /**
+     Begin SFPro modifiers */
+    public
+    func sfProSubtitleStyle(size: CGFloat = .title3) -> some View {
+        modifier(SFProFontModifier(weight: .regular, size: size))
     }
+    /**
+     End SFPro modifiers */
 }
 
 private struct Fonts_Ext: View {
@@ -196,23 +120,23 @@ private struct Fonts_Ext: View {
     var body: some View {
         VStack {
             if fontsRegistered {
-                Text("Limelight Font")
-                    .backgroundTitleLimelightFont()
+                Text("Josefin Header")
+                    .josefinHeaderStyle()
                     .padding()
-                Text("Josefin Sans")
-                    .buttonTitleJosefinSansFont()
+                Text("Josefin Body")
+                    .josefinBodyStyle()
                     .padding()
-                Text("backgroundTitleFont")
-                    .backgroundTitleFont()
+                Text("Josefin Button")
+                    .josefinButtonStyle()
                     .padding()
-                Text("buttonTitleFont")
-                    .buttonTitleFont()
+                Text("Josefin Subtitle")
+                    .josefinSubtitleStyle()
                     .padding()
-                Text("ScreenTitle")
-                    .screenTitle()
+                Text("Limelight Body")
+                    .limelightBodyStyle()
                     .padding()
-                Text("ScreenSubTitle")
-                    .screenSubTitle()
+                Text("SF Pro Subtitle")
+                    .sfProSubtitleStyle()
                     .padding()
             } else {
                 ProgressView() // Show a loader or progress indicator while registering fonts
@@ -221,12 +145,9 @@ private struct Fonts_Ext: View {
                             do {
                                 try await CustomFonts.shared.registerFonts()
                                 fontsRegistered = true
-                            }
-                            catch {
+                            } catch {
                                 print(error)
                             }
-                           
-                            
                         }
                     }
             }

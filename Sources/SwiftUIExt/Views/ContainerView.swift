@@ -58,7 +58,7 @@ struct ContainerView<Content>: View where Content : View {
         .navigationBarTitleDisplayMode(.inline)
         .toolbar {
             ToolbarItem(placement: .principal) {
-                Text(title).screenTitle() }
+                Text(title).josefinBodyStyle() }
         }
         .toolbar {
             ToolbarItem(placement: .navigationBarLeading) { BackButton() }
