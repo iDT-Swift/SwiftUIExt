@@ -29,6 +29,7 @@ extension Color {
 }
 
 // Protea colors
+public
 extension Color {
     static let blackPrimaryText = Color.black
     static let whitePrimaryText = Color.white
