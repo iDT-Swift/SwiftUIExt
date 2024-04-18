@@ -1,4 +1,4 @@
-// swift-tools-version: 5.8
+// swift-tools-version: 5.7.1
 // The swift-tools-version declares the minimum version of Swift required to build this package.
 
 import PackageDescription
@@ -14,17 +14,24 @@ let package = Package(
             name: "SwiftUIExt",
             targets: ["SwiftUIExt"]),
     ],
+    dependencies: [
+        // Build for Local Preview Server
+        // swift package --allow-writing-to-directory ./docs \
+        // generate-documentation --target SwiftUIExt --output-path ./docs
+        // swift package --disable-sandbox preview-documentation --target SwiftUIExt
+        // Build for static-hosting
+        // swift package --allow-writing-to-directory ./docs \
+        // generate-documentation --target SwiftUIExt \
+        // --output-path ./docs --transform-for-static-hosting \
+        // --hosting-base-path SwiftUIExt --disable-indexing
+        .package(url: "https://github.com/apple/swift-docc-plugin", from: "1.1.0")
+    ],
     targets: [
         // Targets are the basic building blocks of a package, defining a module or a test suite.
         // Targets can depend on other targets in this package and products from dependencies.
         .target(
             name: "SwiftUIExt",
-            resources: [
-                Resource.process("Fonts"),
-//                Resource.process("Sources/SwiftUIExt/Assets/Background/SSOBackground"),
-    //                Resource.process("Assets/head turn animation.mp4")
-    //                Resource.process("Assets/Sounds/Glass.aiff")
-            ]),
+            resources: [ Resource.process("Fonts") ]),
         .testTarget(
             name: "SwiftUIExtTests",
             dependencies: ["SwiftUIExt"])
