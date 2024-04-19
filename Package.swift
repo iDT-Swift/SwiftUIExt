@@ -6,8 +6,7 @@ import PackageDescription
 let package = Package(
     name: "SwiftUIExt",
     platforms: [
-        .iOS(.v16),
-        .macOS("10.15.4")
+        .iOS(.v16)
     ],
     products: [
         // Products define the executables and libraries a package produces, making them visible to other packages.
@@ -26,6 +25,7 @@ let package = Package(
         // --output-path ./docs --transform-for-static-hosting \
         // --hosting-base-path SwiftUIExt --disable-indexing
         .package(url: "https://github.com/apple/swift-docc-plugin", branch: "main")
+        //.package(url: "https://github.com/iDT-SpreeAI/swift-docc-plugin.git", branch: "main")
     ],
     targets: [
         // Targets are the basic building blocks of a package, defining a module or a test suite.
