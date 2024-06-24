@@ -34,7 +34,8 @@ let package = Package(
             resources: [
                 .process("Fonts"),
                 .process("SwiftUIextAssets.xcassets") // Include the .xcassets file
-            ],
+            ]
+        ),
         .testTarget(
             name: "SwiftUIExtTests",
             dependencies: ["SwiftUIExt"])
