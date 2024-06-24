@@ -44,7 +44,6 @@ jobs:
     #      ./dist --transform-for-static-hosting --disable-indexing
 
 
-
     - name: Resolve dependencies
       run: swift package resolve
 
@@ -57,7 +56,8 @@ jobs:
           OTHER_DOCC_FLAGS="--transform-for-static-hosting --output-path ./dist --disable-indexing" \
           -sdk iphonesimulator17.0 \
           -configuration Release \
-          -skip-tests
+          -derivedDataPath ./dist
+
     
     # - name: Build Docc static site
     #   run: |
