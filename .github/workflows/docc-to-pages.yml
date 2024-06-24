@@ -47,13 +47,24 @@ jobs:
 
     - name: Resolve dependencies
       run: swift package resolve
+
     
     - name: Build Docc static site
       run: |
         export SDKROOT=$(xcrun --sdk iphonesimulator --show-sdk-path)
-        swift package --allow-writing-to-directory ./dist generate-documentation \
-          --target SwiftUIExt --output-path ./dist --transform-for-static-hosting \
-          --disable-indexing --configuration release
+        xcodebuild docbuild \
+          -scheme SwiftUIExt \
+          -destination 'platform=iOS Simulator,name=iPhone 13 mini,OS=16.0' \
+          OTHER_DOCC_FLAGS="--transform-for-static-hosting --output-path ./dist --disable-indexing" \
+          -sdk iphonesimulator17.0 \
+          -configuration Release
+    
+    # - name: Build Docc static site
+    #   run: |
+    #     export SDKROOT=$(xcrun --sdk iphonesimulator --show-sdk-path)
+    #     swift package --allow-writing-to-directory ./dist generate-documentation \
+    #       --target SwiftUIExt --output-path ./dist --transform-for-static-hosting \
+    #       --disable-indexing --configuration release
 
     # - name: Build Docc static site
     #   run: |
