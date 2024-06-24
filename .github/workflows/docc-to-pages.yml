@@ -47,14 +47,14 @@ jobs:
     
     - name: Build Docc static site
       run: |
-        xcrun swift package \
+        xcrun --sdk iphonesimulator \
+          swift package \
           --allow-writing-to-directory ./dist \
-          generate-documentation \
+          generate-documentation --target SwiftUIExt \
           --output-path ./dist \
           --transform-for-static-hosting \
           --disable-indexing \
-          --platform ios \
-          --disable-sandbox
+          --configuration release
 
     - name: Prepare .nojekyll file
       run: touch dist/.noJekyll
