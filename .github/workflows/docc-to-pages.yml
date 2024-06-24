@@ -55,7 +55,7 @@ jobs:
         export SDKROOT=$(xcrun --sdk iphonesimulator --show-sdk-path)
         xcodebuild docbuild \
           -scheme SwiftUIExt-DocC \
-          -destination 'platform:iOS Simulator,id:A4E99E41-D444-488E-BE71-BD5A889B3467,OS:17.2,name:iPhone 14' \
+          -destination 'platform=iOS Simulator,name=iPhone 14,OS=17.2' \
           OTHER_DOCC_FLAGS="--transform-for-static-hosting --output-path ./dist --disable-indexing" \
           -sdk iphonesimulator17.0 \
           -configuration Release \
