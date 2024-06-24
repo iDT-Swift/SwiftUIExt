@@ -46,17 +46,28 @@ jobs:
 
     - name: Resolve dependencies
       run: swift package resolve
-
+    
     - name: Build Docc static site
       run: |
         export SDKROOT=$(xcrun --sdk iphonesimulator --show-sdk-path)
         xcodebuild docbuild \
-          -scheme SwiftUIExt \
+          -scheme SwiftUIExt-DocC \
           -destination 'platform=iOS Simulator,id=A4E99E41-D444-488E-BE71-BD5A889B3467,OS=17.2' \
           OTHER_DOCC_FLAGS="--transform-for-static-hosting --output-path ./dist --disable-indexing" \
           -sdk iphonesimulator17.0 \
           -configuration Release \
           -derivedDataPath ./dist
+
+    # - name: Build Docc static site
+    #   run: |
+    #     export SDKROOT=$(xcrun --sdk iphonesimulator --show-sdk-path)
+    #     xcodebuild docbuild \
+    #       -scheme SwiftUIExt \
+    #       -destination 'platform=iOS Simulator,id=A4E99E41-D444-488E-BE71-BD5A889B3467,OS=17.2' \
+    #       OTHER_DOCC_FLAGS="--transform-for-static-hosting --output-path ./dist --disable-indexing" \
+    #       -sdk iphonesimulator17.0 \
+    #       -configuration Release \
+    #       -derivedDataPath ./dist
 
     
     # - name: Build Docc static site
