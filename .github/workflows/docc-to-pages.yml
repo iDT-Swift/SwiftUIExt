@@ -29,9 +29,6 @@ jobs:
         token: ${{ secrets.REMOTE_TOKEN }}
 
     - name: Print available SDKs
-      run: xcrun --sdk --show-sdk-path
-
-    - name: Print available SDKs
       run: xcodebuild -showsdks
 
     - name: Set up Git credentials for dependency fetching
