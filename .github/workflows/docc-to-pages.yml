@@ -47,14 +47,21 @@ jobs:
     
     - name: Build Docc static site
       run: |
-        xcrun --sdk iphonesimulator \
-          swift package \
-          --allow-writing-to-directory ./dist \
-          generate-documentation --target SwiftUIExt \
-          --output-path ./dist \
-          --transform-for-static-hosting \
-          --disable-indexing \
-          --configuration release
+        export SDKROOT=$(xcrun --sdk iphonesimulator --show-sdk-path)
+        swift package --allow-writing-to-directory ./dist generate-documentation \
+          --target SwiftUIExt --output-path ./dist --transform-for-static-hosting \
+          --disable-indexing --configuration release
+
+    # - name: Build Docc static site
+    #   run: |
+    #     xcrun --sdk iphonesimulator \
+    #       swift package \
+    #       --allow-writing-to-directory ./dist \
+    #       generate-documentation --target SwiftUIExt \
+    #       --output-path ./dist \
+    #       --transform-for-static-hosting \
+    #       --disable-indexing \
+    #       --configuration release
 
     - name: Prepare .nojekyll file
       run: touch dist/.noJekyll
