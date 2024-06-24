@@ -34,11 +34,21 @@ jobs:
         echo "https://$GITHUB_ACTOR:${{ secrets.REMOTE_TOKEN }}@github.com" > /tmp/.git-credentials
         # This configures Git to use the PAT for any HTTPS operations
 
+    #- name: Build Docc static site
+    #  run: |
+    #    xcrun --sdk iphonesimulator --run swift package --allow-writing-to-directory \
+    #      ./dist generate-documentation --target ${{vars.FRAMEWORK_TARGET}} --output-path \
+    #      ./dist --transform-for-static-hosting --disable-indexing
+
+    - name: Generate Xcode project
+      run: swift package generate-xcodeproj
+
     - name: Build Docc static site
       run: |
-        xcrun --sdk iphonesimulator --run swift package --allow-writing-to-directory \
-          ./dist generate-documentation --target ${{vars.FRAMEWORK_TARGET}} --output-path \
-          ./dist --transform-for-static-hosting --disable-indexing
+        xcodebuild docbuild \
+          -scheme ${{vars.FRAMEWORK_TARGET}} \
+          -destination 'platform=iOS Simulator,name=iPhone 13 mini,OS=16.0' \
+          OTHER_DOCC_FLAGS="--transform-for-static-hosting --output-path ./dist --disable-indexing"
 
     - name: Prepare .nojekyll file
       run: touch dist/.noJekyll
