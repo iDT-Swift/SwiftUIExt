@@ -31,6 +31,9 @@ jobs:
     - name: Print available SDKs
       run: xcodebuild -showsdks
 
+    - name: Print available Destination
+      run: xcodebuild -showsdestination
+
     - name: Set up Git credentials for dependency fetching
       run: |
         git config --global credential.helper 'store --file=/tmp/.git-credentials'  # Use a custom file path for credentials
