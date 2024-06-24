@@ -12,9 +12,10 @@ struct ContentRoundedBorder: ViewModifier {
     var background: Color
     var boderColor: Color?
     var maxWidth: CGFloat?
+    var padding: CGFloat = .body
     func body(content: Content) -> some View {
         content
-            .padding()
+            .padding(.body)
             .frame(maxWidth: maxWidth)
             .foregroundColor(foreground)
             .background(background)
@@ -30,7 +31,8 @@ extension View {
     func contentRoundedBorder(foreground: Color,
                               background: Color,
                               borderColor: Color? = nil,
-                              maxWidth: CGFloat? = nil) -> some View {
+                              maxWidth: CGFloat? = nil,
+                              padding: CGFloat = .body) -> some View {
         self.modifier(ContentRoundedBorder(foreground: foreground,
                                            background: background,
                                            boderColor: borderColor,
