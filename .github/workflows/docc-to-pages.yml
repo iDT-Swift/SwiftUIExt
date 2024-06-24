@@ -41,12 +41,15 @@ jobs:
     #      ./dist --transform-for-static-hosting --disable-indexing
 
 
+
+    - name: Resolve dependencies
+      run: swift package resolve
     
     - name: Build Docc static site
       run: |
         xcrun swift package \
           --allow-writing-to-directory ./dist \
-          generate-documentation --target SwiftUIExt \
+          generate-documentation \
           --output-path ./dist \
           --transform-for-static-hosting \
           --disable-indexing \
