@@ -15,7 +15,7 @@ struct ContentRoundedBorder: ViewModifier {
     var padding: CGFloat = .body
     func body(content: Content) -> some View {
         content
-            .padding(.body)
+            .padding(padding)
             .frame(maxWidth: maxWidth)
             .foregroundColor(foreground)
             .background(background)
@@ -36,7 +36,8 @@ extension View {
         self.modifier(ContentRoundedBorder(foreground: foreground,
                                            background: background,
                                            boderColor: borderColor,
-                                           maxWidth: maxWidth))
+                                           maxWidth: maxWidth,
+                                           padding: padding))
     }
 }
 
@@ -47,7 +48,8 @@ struct ContentRoundedBorder_Previews: PreviewProvider {
             HStack {
                 Text("no maxWidth")
                     .contentRoundedBorder(foreground: .black,
-                                          background: .white)
+                                          background: .white,
+                                          padding: .caption1)
                 Text("maxWidth infinite")
                     .contentRoundedBorder(foreground: .black,
                                           background: .white,
