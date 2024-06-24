@@ -56,7 +56,8 @@ jobs:
           -destination 'platform=iOS Simulator,id=A4E99E41-D444-488E-BE71-BD5A889B3467,OS=17.2' \
           OTHER_DOCC_FLAGS="--transform-for-static-hosting --output-path ./dist --disable-indexing" \
           -sdk iphonesimulator17.0 \
-          -configuration Release
+          -configuration Release \
+          -skip-tests
     
     # - name: Build Docc static site
     #   run: |
