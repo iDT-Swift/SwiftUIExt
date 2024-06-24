@@ -28,6 +28,12 @@ jobs:
       with:
         token: ${{ secrets.REMOTE_TOKEN }}
 
+    - name: Print available SDKs
+      run: xcrun --sdk --show-sdk-path
+
+    - name: Print available SDKs
+      run: xcodebuild -showsdks
+
     - name: Set up Git credentials for dependency fetching
       run: |
         git config --global credential.helper 'store --file=/tmp/.git-credentials'  # Use a custom file path for credentials
