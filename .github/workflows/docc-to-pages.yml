@@ -32,7 +32,7 @@ jobs:
       run: xcodebuild -showsdks
 
     - name: Print available Destination
-      run: xcodebuild -showsdestination
+      run: xcodebuild -showdestinations
 
     - name: Set up Git credentials for dependency fetching
       run: |
