@@ -31,7 +31,10 @@ let package = Package(
         // Targets can depend on other targets in this package and products from dependencies.
         .target(
             name: "SwiftUIExt",
-            resources: [ Resource.process("Fonts") ]),
+            resources: [
+                .process("Fonts"),
+                .process("SwiftUIextAssets.xcassets") // Include the .xcassets file
+            ],
         .testTarget(
             name: "SwiftUIExtTests",
             dependencies: ["SwiftUIExt"])
