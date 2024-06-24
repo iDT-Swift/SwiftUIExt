@@ -54,7 +54,8 @@ jobs:
         export SDKROOT=$(xcrun --sdk iphonesimulator --show-sdk-path)
         xcodebuild docbuild \
           -scheme SwiftUIExt \
-          -destination 'platform:iOS Simulator,id:dvtdevice-DVTiOSDeviceSimulatorPlaceholder-iphonesimulator:placeholder,name:Any iOS Simulator Device' \
+          -destination 'platform:iOS Simulator,id:A4E99E41-D444-488E-BE71-BD5A889B3467,OS:17.2,name:iPhone 14' \
+          # -destination 'platform:iOS Simulator,id:dvtdevice-DVTiOSDeviceSimulatorPlaceholder-iphonesimulator:placeholder,name:Any iOS Simulator Device' \
           # -destination 'platform=iOS Simulator,name=iPhone 13 mini,OS=16.0' \
           OTHER_DOCC_FLAGS="--transform-for-static-hosting --output-path ./dist --disable-indexing" \
           -sdk iphonesimulator17.0 \
