@@ -32,7 +32,7 @@ jobs:
       run: xcodebuild -showsdks
 
     - name: Print available Destination
-      run: xcodebuild -showdestinations
+      run: xcodebuild -scheme SwiftUIExt-DocC -showdestinations
 
     - name: Set up Git credentials for dependency fetching
       run: |
