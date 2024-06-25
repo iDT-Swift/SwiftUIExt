@@ -9,14 +9,16 @@ import SwiftUI
 
 public
 struct BackView: View {
+    @Environment(\.colorScheme) var colorScheme
     public init() {}
     public
     var body: some View {
         Image(systemName: "chevron.backward")
             .symbolRenderingMode(.monochrome)
-            .foregroundStyle(Color.black)
+            .foregroundStyle(colorScheme == .dark ? .white : .black)
             .fontWeight(.bold)
     }
+    
 }
 
 public
