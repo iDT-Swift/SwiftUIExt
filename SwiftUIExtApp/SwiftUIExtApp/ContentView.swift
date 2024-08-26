@@ -112,8 +112,9 @@ struct ContentView: View {
     }
 }
 
-struct ContentView_Previews: PreviewProvider {
-    static var previews: some View {
-        ContentView()
-    }
+#Preview {
+    // In order to make it work, to show some companies, I need to load the data offline.
+    LoadingPreviewProxy { ContentView() }
+        .previewDevice("iPhone 13 mini")
+        .previewDisplayName("iPhone 13 mini")
 }

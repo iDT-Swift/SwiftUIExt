@@ -173,7 +173,7 @@ struct PortionOverlayView: View {
                             overlayContent: Circle().foregroundColor(.green) )
             .hPortionOverlay(alignment: .center,
                             divitions: 5,
-                            position: 0,
+                            position: 1,
                             overlayContent: Circle().foregroundColor(.red) )
     }
 }
