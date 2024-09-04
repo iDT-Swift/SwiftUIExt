@@ -38,8 +38,8 @@ jobs:
       run: sudo xcode-select --switch /Applications/Xcode.app/Contents/Developer
 
     - name: Build Documentation
-      # run: xcodebuild docbuild -scheme ${{vars.FRAMEWORK_TARGET}} -destination 'generic/platform=iOS Simulator' -derivedDataPath ./build OTHER_DOCC_FLAGS="--output-path ./dist --transform-for-static-hosting --hosting-base-path ${{vars.FRAMEWORK_TARGET}}"
-      run: xcodebuild docbuild -scheme ${{vars.FRAMEWORK_TARGET}} -destination 'generic/platform=iOS Simulator' -derivedDataPath ./build OTHER_DOCC_FLAGS="--output-path ./dist --transform-for-static-hosting --hosting-base-path /"
+      run: xcodebuild docbuild -scheme ${{vars.FRAMEWORK_TARGET}} -destination 'generic/platform=iOS Simulator' -derivedDataPath ./build OTHER_DOCC_FLAGS="--output-path ./dist --transform-for-static-hosting --hosting-base-path /${{vars.FRAMEWORK_TARGET}}"
+      # run: xcodebuild docbuild -scheme ${{vars.FRAMEWORK_TARGET}} -destination 'generic/platform=iOS Simulator' -derivedDataPath ./build OTHER_DOCC_FLAGS="--output-path ./dist --transform-for-static-hosting --hosting-base-path /"
 
     - name: Prepare .nojekyll file
       run: touch dist/.noJekyll
