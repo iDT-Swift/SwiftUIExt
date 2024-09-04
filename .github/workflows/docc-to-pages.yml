@@ -27,12 +27,6 @@ jobs:
     - uses: actions/checkout@v4
       with:
         token: ${{ secrets.REMOTE_TOKEN }}
-
-    # - name: Set up Git credentials for dependency fetching
-    #   run: |
-    #     git config --global credential.helper 'store --file=/tmp/.git-credentials'  # Use a custom file path for credentials
-    #     echo "https://$GITHUB_ACTOR:${{ secrets.REMOTE_TOKEN }}@github.com" > /tmp/.git-credentials
-    #     # This configures Git to use the PAT for any HTTPS operations
     
     - name: Set up Xcode
       run: sudo xcode-select --switch /Applications/Xcode.app/Contents/Developer
