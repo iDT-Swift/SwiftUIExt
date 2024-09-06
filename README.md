@@ -1,2 +1,2 @@
 # SwiftUIExt
-Extensions that are utilized across our application and custom libraries
+This Package contains SwiftUI extensions ready to use across SwiftUI applications or as a complement to customize SwiftUI libraries
